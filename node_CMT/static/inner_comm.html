@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/inner.css">
+    <link rel="stylesheet" href="../css/reset.css">
+</head>
+<body>
+    <div class="list_container comm_con">
+        <div class="list_header">
+            友情社区
+        </div>
+        <div>
+        <img src="../img/so1.png" alt="">
+        <img src="../img/so2.png" alt="">
+        <img src="../img/so3.png" alt="">
+    </div>
+    </div>
+</body>
+</html>
+<script>
+    let ocommCon = document.querySelector(".comm_con");
+    document.addEventListener('DOMContentLoaded', function() {
+        let width = ocommCon.clientWidth
+        let height = ocommCon.clientHeight
+        window.parent.postMessage({
+            oiframeCommHeight: height,
+            oiframeCommWidth: width
+        }, '*')
+    }, false)
+</script>

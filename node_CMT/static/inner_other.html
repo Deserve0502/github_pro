@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/inner.css">
+</head>
+<body>
+    <div class="list_container other_con">
+        <div class="list_header">
+            作者的其他话题
+        </div>
+        <ul class="other_section">
+            
+        </ul>
+    </div>
+</div>
+</body>
+</html>
+<script src="../js/common.js"></script>
+<script>
+    let otherCon = document.querySelector(".other_con");
+    let ootherSection = document.querySelector(".other_section");
+    let ls = localStorage;
+    let url = 'https://cnodejs.org/api/v1/user/' + ls.getItem("author");
+    let otherStr;
+    document.addEventListener('DOMContentLoaded', function() {
+        let width = otherCon.clientWidth
+        let height = otherCon.clientHeight
+        window.parent.postMessage({
+            oiframeOtherHeight: height,
+            oiframeOtherWidth: width
+        }, '*')
+    }, false);
+    ajax({
+        'url': url,
+        'type': 'get',
+        success: function (data) {
+            let otherArr = JSON.parse(data).data.recent_topics;
+            // console.log(otherArr[0].title);
+            if(otherArr.length===0){
+                ootherSection.innerHTML = '无';
+            }else{
+                for(let i = 0;i<otherArr.length;i++){
+                otherStr +=`
+                <li>${otherArr[i].title}</li>
+                
+                `
+            }
+            otherStr = otherStr.substr(9);
+
+            
+            ootherSection.innerHTML = otherStr;
+            }
+let otherLi = document.querySelectorAll(".other_section > li");
+            for(let i = 0;i<otherArr.length;i++){
+           
+                otherLi[i].onclick = function(){
+               ls.setItem("articleId",otherArr[i].id);
+               ls.setItem("author",otherArr[i].author.loginname);
+           window.top.location.href = '../html/invitation.html'
+         
+           }
+
+       }
+          
+
+        }
+    })
+</script>

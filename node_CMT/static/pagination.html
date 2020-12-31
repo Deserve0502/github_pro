@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/inner.css">
+    <link rel="stylesheet" href="../css/reset.css">
+</head>
+
+<body>
+    <div class="allContain">
+        <ul class="contain_header">
+            <li>首页</li>
+            <li>精华</li>
+            <li>分享</li>
+            <li>问答</li>
+            <li>招聘</li>
+            <li>客户端测试</li>
+        </ul>
+        <iframe id="contain" src="../static/contain.html" frameborder="0"></iframe>
+        <ul class="contain_pagination">
+            <li>
+                <</li> <li>1
+            </li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>...</li>
+            <li>></li>
+        </ul>
+    </div>
+
+</body>
+
+</html>
+<script>
+    let ocontainPagination = document.querySelector(".contain_pagination");
+    let ocontain = document.getElementById('contain');
+    let oallContain = document.querySelector(".allContain");
+    
+    window.addEventListener('message',
+        function (e) {
+            ocontain.style.height = e.data.ocontainHeight + 'px'
+            ocontain.style.width = e.data.ocontainWidth + 'px'
+        })
+    document.addEventListener('DOMContentLoaded', function () {
+        let width = oallContain.clientWidth
+        let height = oallContain.clientHeight
+        window.parent.postMessage({
+            iframePaginationHeight: 2230,
+            // iframePaginationHeight:height,
+            iframePaginationWidth: width
+        }, '*')
+    }, false)
+     
+    let ocontain_li = document.querySelectorAll(".contain_header > li ");
+    for (let i = 0; i < ocontain_li.length; i++) {
+        ocontain_li[i].onclick = function () {
+            if( ocontain_li[i].innerHTML === '精华'){
+                ls.setItem("tab","good")
+            }else if(ocontain_li[i].innerHTML === '分享'){
+                ls.setItem("tab","share")
+            }else if(ocontain_li[i].innerHTML === '问答'){
+                ls.setItem("tab","ask");
+            }else{
+                ls.setItem("tab","all");
+            }
+
+            partRefresh();
+            ocontain_li[0].style.backgroundColor = '#f6f6f6';     
+            for (let j = 0; j < ocontain_li.length; j++) {
+                ocontain_li[j].style.backgroundColor = '#f6f6f6';
+                ocontain_li[j].style.color = '#80bd01';
+                ocontain_li[i].style.backgroundColor = '#80bd01';
+                ocontain_li[i].style.color = '#fff';
+
+            }
+        }
+    }
+    let opaginationLi = document.querySelectorAll(".contain_pagination > li");
+    let pali = '';
+    let ss = sessionStorage;
+    let ls = localStorage;
+    let paliNum = 4;
+    firstLi();
+    let temp;
+    ls.setItem("page", 1);
+    opaginationLi[1].style.color = '#80bd01';
+    function firstLi() {
+        ocontainPagination = document.querySelector(".contain_pagination");
+        for (let i = 0; i < opaginationLi.length; i++) {
+            opaginationLi[i].onclick = function () {
+               
+                console.log('length', opaginationLi.length)
+                // ss.setItem("page",opaginationLi[i].innerHTML);
+                ls.setItem("page", opaginationLi[i].innerHTML);
+                paginatinColor(i);
+
+                console.log(opaginationLi[i].innerHTML)
+                // location.reload();
+                partRefresh();
+                if (opaginationLi[i].innerHTML >= 4 && opaginationLi.length === 8 && opaginationLi[i].innerHTML !== '19') {
+                    let pagNewLi = document.createElement("li");
+                    pagNewLi.innerHTML = ">";
+                    temp = opaginationLi[i].innerHTML;
+                    opaginationLi[1].innerHTML = "..."
+                    opaginationLi[2].innerHTML = temp - 2;
+                    opaginationLi[3].innerHTML = temp - 1;
+                    opaginationLi[4].innerHTML = temp;
+                    opaginationLi[5].innerHTML = Number(temp) + 1;
+                    opaginationLi[6].innerHTML = Number(temp) + 2;
+                    opaginationLi[7].innerHTML = "...";
+                    ocontainPagination.append(pagNewLi);
+                    opaginationLi = document.querySelectorAll(".contain_pagination > li");
+                    firstLi();
+                } 
+                else if (opaginationLi[i].innerHTML >= 4) {
+                    console.log('length', opaginationLi.length)
+                    if (opaginationLi[i].innerHTML === '20'){
+                        if(opaginationLi.length === 6){
+                        console.log('ppp')
+                        let newpage = document.createElement("li");
+                        newpage.innerHTML = ">";
+                        ocontainPagination.append(newpage);
+                        opaginationLi = document.querySelectorAll(".contain_pagination > li");
+                        opaginationLi[opaginationLi.length - 2].innerHTML = 21;
+                        opaginationLi[opaginationLi.length - 3].innerHTML = 20;
+                        opaginationLi[opaginationLi.length - 4].innerHTML = 19;
+                        opaginationLi[opaginationLi.length - 5].innerHTML = 18;
+                        opaginationLi = document.querySelectorAll(".contain_pagination > li");
+                        }       
+                    } else if (opaginationLi[i].innerHTML === '19') {
+                        if (opaginationLi.length === 7) {
+                            let newpage = document.createElement("li");
+                            newpage.innerHTML = ">";
+                            ocontainPagination.append(newpage);
+                            opaginationLi = document.querySelectorAll(".contain_pagination > li");
+                            opaginationLi[opaginationLi.length - 2].innerHTML = 21;
+                            opaginationLi[opaginationLi.length - 3].innerHTML = 20;
+                            opaginationLi[opaginationLi.length - 4].innerHTML = 19;
+                            opaginationLi[opaginationLi.length - 5].innerHTML = 18;
+                            opaginationLi[opaginationLi.length - 6].innerHTML = 17;
+                            opaginationLi = document.querySelectorAll(".contain_pagination > li");
+                        } else {
+                            let newpage1 = document.createElement("li");
+                            let newpage2 = document.createElement("li");
+                            newpage1.innerHTML = ">"
+                            ocontainPagination.append(newpage1);
+                            opaginationLi = document.querySelectorAll(".contain_pagination > li");
+                            ocontainPagination.append(newpage2);
+                            opaginationLi = document.querySelectorAll(".contain_pagination > li");
+                            opaginationLi[opaginationLi.length - 1].innerHTML = ">";
+                            opaginationLi[opaginationLi.length - 2].innerHTML = 21;
+                            opaginationLi[opaginationLi.length - 3].innerHTML = 20;
+                            opaginationLi[opaginationLi.length - 4].innerHTML = 19;
+                            opaginationLi[opaginationLi.length - 5].innerHTML = 18;
+                            opaginationLi[opaginationLi.length - 6].innerHTML = 17;
+                            opaginationLi = document.querySelectorAll(".contain_pagination > li");
+                        }
+                    } else if (opaginationLi[i].innerHTML < 21 && opaginationLi[i].innerHTML !== '20' && opaginationLi[i].innerHTML !== '19' ) {
+                        if(opaginationLi[i].innerHTML === '18'){
+                            console.log("yyayayayay")
+                            opaginationLi = document.querySelectorAll(".contain_pagination > li");
+                            let newpage1 = document.createElement("li");
+                            let newpage2 = document.createElement("li");
+                            ocontainPagination.append(newpage1);
+                            opaginationLi = document.querySelectorAll(".contain_pagination > li");
+                            ocontainPagination.append(newpage2);
+                            opaginationLi = document.querySelectorAll(".contain_pagination > li");
+                            newpage1.innerHTML = "...";
+                            newpage2.innerHTML = ">";
+                            opaginationLi[opaginationLi.length - 3].innerHTML = 20;
+                            opaginationLi[opaginationLi.length - 4].innerHTML = 19;
+                            opaginationLi[opaginationLi.length - 5].innerHTML = 18;
+                            opaginationLi[opaginationLi.length - 6].innerHTML = 17;
+                            opaginationLi[opaginationLi.length - 7].innerHTML = 16;
+                            opaginationLi = document.querySelectorAll(".contain_pagination > li");
+                        
+                    }else{
+                        temp = opaginationLi[i].innerHTML;
+                        opaginationLi[1].innerHTML = "..."
+                        opaginationLi[2].innerHTML = temp - 2;
+                        opaginationLi[3].innerHTML = temp - 1;
+                        opaginationLi[4].innerHTML = temp;
+                        opaginationLi[5].innerHTML = Number(temp) + 1;
+                        opaginationLi[6].innerHTML = Number(temp) + 2;
+                        opaginationLi[7].innerHTML = "...";
+                        opaginationLi = document.querySelectorAll(".contain_pagination > li");
+
+                    }
+
+
+
+                    }
+                } 
+                else if ((opaginationLi[i].innerHTML < 4 || opaginationLi[i].innerText === '<') && opaginationLi.length === 9) {
+                    paginatinColor(i);
+                    opaginationLi[4].style.color = '#999';
+                    opaginationLi[1].style.color =  '#80bd01';
+                    opaginationLi[1].innerHTML = 1;
+                    opaginationLi[2].innerHTML = 2;
+                    opaginationLi[3].innerHTML = 3;
+                    opaginationLi[4].innerHTML = 4;
+                    opaginationLi[5].innerHTML = 5;
+                    opaginationLi[6].innerHTML = "...";
+                    opaginationLi[7].innerHTML = ">";
+                    ocontainPagination.removeChild(opaginationLi[opaginationLi.length - 1]);
+                    opaginationLi = document.querySelectorAll(".contain_pagination > li");
+                } 
+                else if (opaginationLi[i].innerHTML > 4 || opaginationLi[i].innerText === '<') {
+                    if (opaginationLi.length === 6) {
+                        opaginationLi[4].style.color = '#999';
+                        paginatinColor(i);
+                        let newpage1 = document.createElement("li");
+                        let newpage2 = document.createElement("li");
+                        ocontainPagination.append(newpage1);
+                        opaginationLi = document.querySelectorAll(".contain_pagination > li");
+                        ocontainPagination.append(newpage2);
+                        opaginationLi = document.querySelectorAll(".contain_pagination > li");
+                        opaginationLi[1].innerHTML = 1;
+                        opaginationLi[2].innerHTML = 2;
+                        opaginationLi[3].innerHTML = 3;
+                        opaginationLi[4].innerHTML = 4;
+                        opaginationLi[5].innerHTML = 5;
+                        opaginationLi[6].innerHTML = "...";
+                        opaginationLi[7].innerHTML = ">";
+                        opaginationLi = document.querySelectorAll(".contain_pagination > li");
+                        firstLi();
+                    } else if (opaginationLi.length === 8) {
+                        paginatinColor(i);
+                        let newpage = document.createElement("li");
+                        ocontainPagination.append(newpage);
+                        opaginationLi = document.querySelectorAll(".contain_pagination > li");
+                        opaginationLi[1].innerHTML = 1;
+                        opaginationLi[2].innerHTML = 2;
+                        opaginationLi[3].innerHTML = 3;
+                        opaginationLi[4].innerHTML = 4;
+                        opaginationLi[5].innerHTML = 5;
+                        opaginationLi[6].innerHTML = "...";
+                        opaginationLi[7].innerHTML = ">";
+                        ocontainPagination.removeChild(opaginationLi[opaginationLi.length - 1]);
+                    opaginationLi = document.querySelectorAll(".contain_pagination > li");
+                    }
+                    // console.log('length222', opaginationLi.length)
+                } 
+                else if (opaginationLi[i].innerText === '>') {
+                    ls.setItem("page", 21)
+                    partRefresh();
+                    if (opaginationLi.length === 8 || opaginationLi
+                        .length === 9) {
+                        opaginationLi[1].innerHTML = "...";
+                        opaginationLi[2].innerHTML = 19;
+                        opaginationLi[3].innerHTML = 20;
+                        opaginationLi[4].innerHTML = 21;
+                        opaginationLi[5].innerHTML = ">";
+                        ocontainPagination.removeChild(opaginationLi[opaginationLi.length - 1]);
+                        ocontainPagination.removeChild(opaginationLi[opaginationLi.length - 2]);
+                        opaginationLi = document.querySelectorAll(".contain_pagination > li");
+                        if (opaginationLi.length === 7) {
+                            ocontainPagination.removeChild(opaginationLi[opaginationLi.length - 1]);
+                            opaginationLi = document.querySelectorAll(".contain_pagination > li");
+                        }
+                    }
+                }
+
+
+
+
+
+
+
+
+            }
+
+        }
+    }
+
+
+    function getPaginationLi() {
+        opaginationLi = document.querySelectorAll(".contain_pagination > li");
+        for (let i = 0; i < opaginationLi.length; i++) {
+            opaginationLi[i].onclick = function () {
+                temp = opaginationLi[i].innerHTML;
+                console.log(333, opaginationLi[i].innerHTML)
+                opaginationLi[1].innerHTML = "..."
+                opaginationLi[2].innerHTML = temp - 2;
+                opaginationLi[3].innerHTML = temp - 1;
+                opaginationLi[4].innerHTML = temp;
+                opaginationLi[5].innerHTML = Number(temp) + 1;
+                opaginationLi[6].innerHTML = Number(temp) + 2;
+                opaginationLi[7].innerHTML = "...";
+
+
+
+            }
+        }
+    }
+    function paginatinColor(i){
+        opaginationLi = document.querySelectorAll(".contain_pagination > li");
+            if(opaginationLi.length===9 ||opaginationLi[i].innerHTML==='5' || opaginationLi[i].innerText === '>'){
+                console.log(999)
+                 opaginationLi[4].style.color = '#80bd01';
+            }
+            else if(opaginationLi.length===8 &&  opaginationLi[i].innerHTML !== '5'  || opaginationLi[i].innerText === '<'){
+                if(opaginationLi[i].innerText === '<'){
+                    opaginationLi[1].style.color =  '#80bd01';
+                    opaginationLi[0].style.color = '#999';
+                }else{
+                    for(let j = 0;j < opaginationLi.length;j++){
+                    opaginationLi[j].style.color = '#999';
+                }
+                opaginationLi[i].style.color = '#80bd01';
+                }
+               
+            
+        }
+    }
+
+    function partRefresh() {
+        ocontain.src = "../static/contain.html";
+    }
+</script>

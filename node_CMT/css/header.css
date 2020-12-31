@@ -1,0 +1,61 @@
+header {
+    width: 100%;
+    height: 50px;
+    background-color: #444;
+}
+.header_center{
+    height: 100%;
+    width: 90%;
+    padding: 5px;
+    margin: 0 67px 0 67px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.header_center > a {
+    margin-right: 20px;
+}
+.header_center img {
+    width: 120px;
+    cursor: pointer;
+}
+.header_search{
+    width: 233px;
+    height: 26px;
+    background-color: #888;
+    border-radius: 15px;
+    transition: all 0.3s;
+}
+.header_search > span {
+    width: 27px;
+    height: 100%;
+    text-align: center;
+    line-height: 23px;
+}
+.header_search > input {
+    padding: 0;
+    width: 206px;
+    height: 100%;
+    border: none;
+    outline: none;
+    transition: all 0.3s;
+    color: #666;
+    background-color: #888;
+}
+.header_nav {
+    height: 100%;
+    width: 357px;
+    position: absolute;
+    right: 0;
+    display: flex;
+    align-items: center;
+}
+.header_nav a {
+    padding: 10px 15px;
+    box-sizing: border-box;
+    font-size: 13px;
+    color: #ccc;
+    text-align: center;
+    line-height: 20px;
+}

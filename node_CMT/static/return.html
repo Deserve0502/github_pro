@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/inner.css">
+    <link rel="stylesheet" href="../css/reset.css">
+</head>
+<body>
+    <div class="return_con">
+        回到顶部
+    </div>
+</body>
+</html>
+<script>
+    let oreturnCon = document.querySelector(".return_con");
+    document.addEventListener('DOMContentLoaded', function() {
+        let width = oreturnCon.clientWidth
+        let height = oreturnCon.clientHeight
+        window.parent.postMessage({
+            oiframeReturnHeight: height,
+            oiframeReturnWidth: width
+        }, '*')
+    }, false)
+</script>

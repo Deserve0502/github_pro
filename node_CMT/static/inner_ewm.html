@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/inner.css">
+</head>
+<body>
+    <div class="list_container ewm_con">
+        <div class="list_header">
+            客户端二维码
+        </div>
+        <img src="../img/erweima.png" alt="">
+        <a href="">客户端源码地址</a>
+    </div>
+</body>
+</html>
+<script src="../js/common.js"></script>
+<script>
+    let oewmCon = document.querySelector(".ewm_con");
+    document.addEventListener('DOMContentLoaded', function() {
+        let width = oewmCon.clientWidth
+        let height = oewmCon.clientHeight
+        window.parent.postMessage({
+            oiframeEwmHeight: height,
+            oiframeEwmWidth: width
+        }, '*')
+    }, false)
+    // iframeAdaptionPost(oewmCon,'oewmCon')
+</script>

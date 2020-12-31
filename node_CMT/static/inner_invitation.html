@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/inner.css">
+    <link rel="stylesheet" href="../css/reset.css">
+</head>
+
+<body>
+    <div class="invi_con">
+
+        <!-- <div class="invi_up">
+        <span class="classify">
+            置顶
+        </span>
+        <span class="invi_title">
+            请大家遵纪守法，勿发布不合规内容 
+        </span>
+        <li >
+            <span>•</span>
+            <span>发布于</span>
+            <span>11天前</span>
+            <span>•</span>
+            <span>作者</span>
+            <span>某位低调的人</span>
+            <span>•</span>
+            <span>1234</span>
+            <span>次浏览</span>
+        </li>
+    </div>
+    <div class="invi_down">
+       <p>这是帖子内容</p> 
+    </div> -->
+
+    </div>
+    <div class="reply_con">
+
+        <div class="list_header reply_header">
+            <!-- <span>34</span>
+            <span>回复</span> -->
+        </div>
+        <ul class="reply_list">
+           
+       
+        </ul>
+
+
+    </div>
+</body>
+
+</html>
+<script src="../js/common.js"></script>
+<script>
+    let ls = localStorage;
+    let oinviCon = document.querySelector(".invi_con");
+    let oreplyHeader = document.querySelector(".reply_header");
+    let oreplyList = document.querySelector(".reply_list");
+    document.addEventListener('DOMContentLoaded', function () {
+        let width = oinviCon.clientWidth
+        let height = oinviCon.clientHeight
+        window.parent.postMessage({
+            oframeInviHeight: 1000,
+            oframeInviWidth: width
+        }, '*')
+    }, false)
+    let url = 'https://cnodejs.org/api/v1/topic/' + ls.getItem("articleId");
+    let str;
+    let invitationArr;
+    let replyNum;
+    let replyArr;
+    let replyStr;
+    ajax({
+        'url': url,
+        'type': 'get',
+        success: function (data) {
+            let invitationArr = JSON.parse(data).data;
+            console.log(invitationArr);
+            str = `
+            <div class="invi_up">
+             <span class="classify">
+            置顶
+        </span>
+        <span class="invi_title">
+            ${invitationArr.title}
+        </span>
+        <li >
+            <span>•</span>
+            <span>发布于</span>
+            <span>
+                ${getLastTime(invitationArr.create_at)}
+                </span>
+            <span>•</span>
+            <span>作者</span>
+            <span>${invitationArr.author.loginname}</span>
+            <span>•</span>
+            <span>${invitationArr.visit_count}</span>
+            <span>次浏览</span>
+        </li>
+    </div>
+    <div class="invi_down">
+       <p>${invitationArr.content}</p> 
+    </div>
+            
+            `
+            oinviCon.innerHTML = str;
+            
+        replyNum = `
+        <span>${invitationArr.reply_count}</span>
+        <span>回复</span>
+        `
+        oreplyHeader.innerHTML = replyNum;
+        
+            replyArr = invitationArr.replies;
+            
+            
+            if(replyArr.length !== 0){
+                for(let i = 0;i<replyArr.length;i++){
+            replyStr += `<li><div>
+                <img src="../img/peo1.jpg">
+                <span class="reply_name">${replyArr[i].author.loginname}</span>
+                <span>${i + 1}</span>
+                <span>楼</span>
+                <span>•</span>
+                <span>${getLastTime(replyArr[i].create_at)}</span>
+                <span class='invi_author'>${replyArr[i].author.loginname===ls.getItem("author")?'作者':''}</span>
+            </div>
+            <p class='reply_content'>${replyArr[i].content}</p>
+            </li>
+            
+            `
+        }
+        replyStr = replyStr.substr(9);
+        oreplyList.innerHTML = replyStr;
+        let inviAuthor = document.querySelectorAll(".invi_author");
+       
+        // let replyContent = document.querySelectorAll(".reply_list div:nth-of-type(2) > p");
+        for(let i = 0;i<inviAuthor.length;i++){
+            if(inviAuthor[i].innerHTML ===''){
+                inviAuthor[i].style.backgroundColor = 'white';
+            }
+        }
+        // console.log(222,replyContent)
+        // for(let i = 0;i<replyContent.length;i++){
+        //     console.log(replyContent[i].innerText)
+        //     if(replyContent[i].innerText.indexOf("@") !== -1){
+                
+        //     }
+        // }
+      
+            }else{
+                oreplyList.innerHTML = '无';
+            }
+       
+        
+        }
+
+      
+
+
+        
+    })
+</script>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/inner.css">
+    <link rel="stylesheet" href="../css/reset.css">
+</head>
+<body>
+    <iframe id="iframe_header" src="../static/header.html" frameborder="0" margin="0px"></iframe>
+    <div style="width:90%;margin:auto;padding: 15px;margin-bottom: 20px;">
+        <div style="width: 76%;float: left;">
+            <div class="contain_con beginner_con">
+                <div class="list_header list_multHeader">
+                    <span>主页</span>
+                    <span>/</span>
+                    <span> Node.js 新手入门</span>
+            </div>
+            <ul class="beginner_ul">
+                <li class="list_title">Node.js 入门</li>
+                <li>《汇智网 Node.js 课程》</li>
+                <li>
+                    <a href="">http://www.hubwiz.com/course/?type=nodes</a>
+                </li>
+                <li>
+                    《快速搭建 Node.js 开发环境以及加速 npm》
+                </li>
+                <li>
+                    <a href="">
+                        http://fengmk2.com/blog/2014/03/node-env-and-faster-npm.html
+                    </a>
+                </li>
+                <li>
+                    《Node.js 包教不包会》
+                </li>
+                <li>
+                    <a href="">https://github.com/alsotang/node-lessons</a>
+                </li>
+                <li>
+                    《ECMAScript 6入门》
+                </li>
+                <li>
+                    <a href="">
+                        http://es6.ruanyifeng.com/
+                    </a>
+                </li>
+                <li>
+                    《七天学会NodeJS》
+                </li>
+                <li>
+                    <a href="">
+                    https://github.com/nqdeng/7-days-nodejs
+                </a>
+                </li>
+                <li>
+                    《Node入门-一本全面的Node.js教程》
+                </li>
+                <li>
+                    <a href="">
+                        http://www.nodebeginner.org/index-zh-cn.html
+                    </a>
+                </li>
+                <li class="list_title">
+                    Node.js 资源
+                </li>
+                <li>
+                    《node weekly》
+                </li>
+                <li>
+                    <a href="">
+                        http://nodeweekly.com/issues
+                    </a>
+                </li>
+                <li>
+                    《node123-node.js中文资料导航》
+                </li>
+                <li>
+                    <a href="">
+                        https://github.com/youyudehexie/node123
+                    </a>
+                </li>
+                <li>
+                    《A curated list of delightful Node.js packages and resources》
+                </li>
+                <li>
+                    <a href="">
+                        https://github.com/sindresorhus/awesome-nodejs
+                    </a>
+                </li>
+                <li>
+                    《Node.js Books》
+                </li>
+                <li>
+                    <a href="">https://github.com/pana/node-books</a>
+                </li>
+                <li class="list_title">
+                    Node.js 名人
+                </li>
+                <li>《名人堂》 </li>
+                <li>
+                    <a href="">https://github.com/cnodejs/nodeclub/wiki/名人堂</a>
+                </li>
+                <li class="list_title"> 
+                    Node.js 服务器
+                </li>
+                <li>
+                    新手搭建 Node.js 服务器，推荐使用无需备案的 DigitalOcean
+                    <a href="">(https://www.digitalocean.com/)</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+            <div style="width: 22%;float: right;" class="layout_right">
+                <iframe id="iframe_log" src="../static/inner_log.html" frameborder="0"></iframe>
+                <iframe id="iframe_comm" src="../static/inner_comm.html" frameborder="0"></iframe>
+                <iframe id="iframe_ewm"src="../static/inner_ewm.html" frameborder="0"></iframe>
+            </div>
+        </div>
+            <iframe id="iframe_bottom" src="../static/bottom.html" frameborder="0"></iframe>
+</body>
+</html>
+<script>
+     let oframeHeader = document.getElementById('iframe_header');
+     let oframeLog = document.getElementById('iframe_log');
+     let oiframeComm = document.getElementById("iframe_comm");
+    let oiframeEwm = document.getElementById("iframe_ewm");
+    let oiframeBottom = document.getElementById("iframe_bottom");
+    window.addEventListener('message', function (e) {
+        oframeHeader.style.height = e.data.oframeHeaderHeight + 'px'
+        oframeHeader.style.width = e.data.oframeHeaderWidth + 'px'
+    })
+    window.addEventListener('message',
+        function (e) {
+            oframeLog.style.height = e.data.oframeLogHeight + 'px'
+            oframeLog.style.width = e.data.oframeLogWidth + 'px'
+        })
+        window.addEventListener('message',
+    function (e) {
+        oiframeComm.style.height = e.data.oiframeCommHeight + 'px'
+        oiframeComm.style.width = e.data.oiframeCommWidth + 'px'
+    })
+    window.addEventListener('message',
+    function (e) {
+        oiframeEwm.style.height = e.data.oiframeEwmHeight + 'px'
+        oiframeEwm.style.width = e.data.oiframeEwmWidth + 'px'
+    })
+    window.addEventListener('message',
+    function (e) {
+        oiframeBottom.style.height = e.data.oiframeBottomHeight + 'px'
+        oiframeBottom.style.width = e.data.oiframeBottomWidth + 'px'
+    })
+</script>

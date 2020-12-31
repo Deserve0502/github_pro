@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/inner.css">
+</head>
+<body>
+    <div class="list_container inter_con">
+        <div class="list_header">
+            <span>积分榜</span>
+            <a href="">TOP 100 >> </a>
+        </div>
+        <ul class="list_section inter_ul"> 
+
+        </ul>
+    </div>
+</body>
+</html>
+<script>
+    let integralArr = [
+        {inter:111,name:'小王'},
+        {inter:222,name:'小张'},
+        {inter:333,name:'小李'},
+        {inter:111,name:'小王'},
+        {inter:222,name:'小张'},
+        {inter:333,name:'小李'},
+        {inter:111,name:'小王'},
+        {inter:222,name:'小张'},
+        {inter:333,name:'小李'},
+        {inter:111,name:'小王'},
+        {inter:222,name:'小张'},
+    ];
+    let inter_ul = document.querySelector(".inter_ul");
+    let str = '';
+    for(let i = 0; i < 11; i++){
+        str += `
+        <li class='inter_li'>
+           <span> ${integralArr[i].inter}</span>
+           <span> ${integralArr[i].name}</span>
+            </li>
+        `
+    }
+    inter_ul.innerHTML = str;
+    var ointerCon = document.querySelector('.inter_con')
+    document.addEventListener('DOMContentLoaded', function() {
+        let width = ointerCon.clientWidth
+        let height = ointerCon.clientHeight
+        window.parent.postMessage({
+            oframeIntegralHeight: height,
+            oframeIntegralWidth: width
+        }, '*')
+    }, false)
+</script>

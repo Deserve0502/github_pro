@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/inner.css">
+    <link rel="stylesheet" href="../css/reset.css">
+</head>
+<body>
+    <iframe id="iframe_header" src="../static/header.html" frameborder="0" margin="0px"></iframe>
+    <div style="width:90%;margin:auto;padding: 15px;margin-bottom: 20px;">
+        <div style="width: 76%;float: left;">
+            <div class="contain_con beginner_con">
+                <div class="list_header list_multHeader">
+                    <span>主页</span>
+                    <span>/</span>
+                    <span> API</span>
+            </div>
+            <ul class="API_ul">
+                <li>
+                    以下 api 路径均以 
+                   <a href=""> https://cnodejs.org/api/v1</a> 为前缀
+                </li>
+                <li class="list_title">主题</li>
+                <li class="list_smallTitle">get /topics 主题首页</li>
+                <li>
+                    接收 get 参数
+                </li>
+                <ul>
+                    <li>page Number 页数</li>
+                    <li>tab String 主题分类。目前有 ask share job good</li>
+                    <li>limit Number 每一页的主题数量</li>
+                    <li>mdrender String 当为 false 时，不渲染。默认为 true，渲染出现的所有 markdown 格式文本。</li>
+                </ul>
+                <li>
+                    示例：
+                    <a href="">/api/v1/topics</a>
+                </li>
+                <li class="list_smallTitle">
+                    get /topic/:id 主题详情
+                </li>
+                <li>
+                    接收 get 参数
+                </li>
+                <ul>
+                    <li>
+                        mdrender String 当为 false 时，不渲染。默认为 true，渲染出现的所有 markdown 格式文本。
+                       
+                    </li>
+                    <li> accesstoken String 当需要知道一个主题是否被特定用户收藏以及对应评论是否被特定用户点赞时，才需要带此参数。会影响返回值中的 is_collect 以及 replies 列表中的 is_uped 值。</li>
+                   
+                </ul>
+                <li>
+                    示例：
+                    <a href="">api/v1/topic/5433d5e4e737cbe96dcef312</a>/
+                </li>
+            </ul>
+        </div>
+    </div>
+            <div style="width: 22%;float: right;" class="layout_right">
+                <iframe id="iframe_log" src="../static/inner_log.html" frameborder="0"></iframe>
+                <iframe id="iframe_comm" src="../static/inner_comm.html" frameborder="0"></iframe>
+                <iframe id="iframe_ewm"src="../static/inner_ewm.html" frameborder="0"></iframe>
+            </div>
+        </div>
+            <iframe id="iframe_bottom" src="../static/bottom.html" frameborder="0"></iframe>
+</body>
+</html>
+<script>
+     let oframeHeader = document.getElementById('iframe_header');
+     let oframeLog = document.getElementById('iframe_log');
+     let oiframeComm = document.getElementById("iframe_comm");
+    let oiframeEwm = document.getElementById("iframe_ewm");
+    let oiframeBottom = document.getElementById("iframe_bottom");
+    window.addEventListener('message', function (e) {
+        oframeHeader.style.height = e.data.oframeHeaderHeight + 'px'
+        oframeHeader.style.width = e.data.oframeHeaderWidth + 'px'
+    })
+    window.addEventListener('message',
+        function (e) {
+            oframeLog.style.height = e.data.oframeLogHeight + 'px'
+            oframeLog.style.width = e.data.oframeLogWidth + 'px'
+        })
+        window.addEventListener('message',
+    function (e) {
+        oiframeComm.style.height = e.data.oiframeCommHeight + 'px'
+        oiframeComm.style.width = e.data.oiframeCommWidth + 'px'
+    })
+    window.addEventListener('message',
+    function (e) {
+        oiframeEwm.style.height = e.data.oiframeEwmHeight + 'px'
+        oiframeEwm.style.width = e.data.oiframeEwmWidth + 'px'
+    })
+    window.addEventListener('message',
+    function (e) {
+        oiframeBottom.style.height = e.data.oiframeBottomHeight + 'px'
+        oiframeBottom.style.width = e.data.oiframeBottomWidth + 'px'
+    })
+</script>

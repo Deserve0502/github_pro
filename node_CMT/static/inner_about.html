@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/inner.css">
+    <link rel="stylesheet" href="../css/reset.css">
+</head>
+<body>
+    <div class="list_container about_con">
+        <div class="list_header">
+            关于
+        </div>
+        <ul>
+            <li> CNode：Node.js专业中文社区</li>
+            <li> 在这里你可以：</li>
+            <li>• 向别人提出你遇到的问题</li>
+            <li>• 帮助遇到问题的人</li>
+            <li>• 分享自己的知识</li>
+            <li>• 和其它人一起进步</li>
+        </ul>
+    </div>
+</body>
+</html>
+<script>
+     var oaboutCon = document.querySelector('.about_con')
+    document.addEventListener('DOMContentLoaded', function() {
+        let width = oaboutCon.clientWidth
+        let height = oaboutCon.clientHeight
+        window.parent.postMessage({
+            oframeAboutHeight: height,
+            oframeAboutWidth: width
+        }, '*')
+    }, false)
+</script>

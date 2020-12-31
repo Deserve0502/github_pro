@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/inner.css">
+    <link rel="stylesheet" href="../css/reset.css">
+</head>
+<body>
+    <div class="inner_log">
+        <p>CNode：Node.js专业中文社区</p>
+        <p>您可以
+            <a href=""> 登录 </a>或
+            <a href=""> 注册 </a>  , 也可以
+        </p>
+        <button class="btn_prim">通过 GitHub 登录</button>
+    </div>
+</body>
+</html>
+<script src="../js/common.js"></script>
+<script>
+    console.log("刷新了");
+     var oinnerLog = document.querySelector('.inner_log');
+    document.addEventListener('DOMContentLoaded', function() {
+        let width = oinnerLog.clientWidth
+        let height = oinnerLog.clientHeight
+        window.parent.postMessage({
+            oframeLogHeight: height,
+            oframeLogWidth: width
+        }, '*')
+    }, false)
+    // iframeAdaptionPost(oinnerLog,'oinnerLog');
+</script>

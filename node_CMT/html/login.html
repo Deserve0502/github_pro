@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/inner.css">
+</head>
+<body>
+    <iframe id="iframe_header" src="../static/header.html" frameborder="0" margin="0px"></iframe>
+    <div style="width:90%;margin:auto;padding: 15px;">
+        <div style="width: 76%;float: left;">
+            <iframe id="iframe_log" src="../static/log.html" frameborder="0"></iframe>
+        </div>
+        <div style="width: 22%;float: right;">
+           <iframe id="iframe_about" src="../static/inner_about.html" frameborder="0"></iframe>
+        </div>
+    </div>
+    <div class="footer">
+    <iframe id="iframe_bottom" src="../static/bottom.html" frameborder="0"></iframe>
+</div>
+</body>
+</html>
+<script>
+    let oframeHeader = document.getElementById('iframe_header');
+    let oiframeLog = document.getElementById("iframe_log");
+    let oframeAbout = document.getElementById("iframe_about");
+    let oiframeBottom = document.getElementById("iframe_bottom");
+    window.addEventListener('message', function (e) {
+        oframeHeader.style.height = e.data.oframeHeaderHeight + 'px'
+        oframeHeader.style.width = e.data.oframeHeaderWidth + 'px'
+    })
+    window.addEventListener('message', function (e) {
+        oiframeLog.style.height = e.data.oiframeLogHeight + 'px'
+        oiframeLog.style.width = e.data.oiframeLogWidth + 'px'
+    })
+    window.addEventListener('message', function (e) {
+        oframeAbout.style.height = e.data.oframeAboutHeight + 'px'
+        oframeAbout.style.width = e.data.oframeAboutWidth + 'px'
+    })
+    window.addEventListener('message',
+    function (e) {
+        oiframeBottom.style.height = e.data.oiframeBottomHeight + 'px'
+        oiframeBottom.style.width = e.data.oiframeBottomWidth + 'px'
+    })
+</script>
