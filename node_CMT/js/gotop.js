@@ -13,9 +13,9 @@ window.onload = function () {
         console.log(9090)
     var osTop = document.documentElement.scrollTop || document.body.scrollTop
     if (osTop >= clientHeight) {
-      ogotop.style.display = 'block'
+      ogotop.style.opacity = '1'
     } else {
-      ogotop.style.display = 'none'
+      ogotop.style.opacity = '0'
     }
     if (!isTop) {
       clearInterval(timer)

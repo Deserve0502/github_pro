@@ -60,6 +60,18 @@ body {
     width: 22%;
     float: right;
 }
+@media screen  and (max-width: 982px){
+    .layout-right {
+       display: none;
+    }
+    .layout-left {
+        width: 100%;
+    }
+    .layout-left-left {
+        width: 90%;
+    }
+ 
+}
 iframe {
     width: 100%;
     overflow: hidden;
