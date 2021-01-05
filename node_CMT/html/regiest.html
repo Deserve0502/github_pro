@@ -22,9 +22,10 @@
     <iframe id="iframe_bottom" src="../static/bottom.html" frameborder="0"></iframe>
 </body>
 </html>
+<script src="../js/common.js"></script>
 <script>
-    let oframeHeader = document.querySelector('iframe_header');
-    let oiframeBottom = document.querySelector("iframe_bottom");
+    let oframeHeader = document.querySelector('#iframe_header');
+    let oiframeBottom = document.querySelector("#iframe_bottom");
     window.addEventListener('message', function (e) {
         oframeHeader.style.height = e.data.oframeHeaderHeight + PX;
         oframeHeader.style.width = e.data.oframeHeaderWidth + PX;
