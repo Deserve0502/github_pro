@@ -1,151 +1,77 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        li {
-            border: 1px solid red;
-            float: left;
-            list-style-type: none;
-            list-style: none;
-            padding: 5px;
-        }
-    </style>
 </head>
 
+    <body style="height:2000px;">
+        <button id="test" style="position:fixed;right:0;bottom:0">回到顶部</button>
+        <script>
+             var topH=document.documentElement.scrollTop||document.body.scrollTop;
+             console.log(topH)
+        test.onclick = function(){
+        scrollTo(0,0);
+        }
+        </script>
+        </body>
+
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>回到顶部</title>
+<style>
+   * { padding: 0; margin: 0; }
+   #box {width: 100%;height: 2400px;margin: auto;border: 1px solid red;box-sizing: border-box;}
+   #top {width: 60px;height: 50px;line-height: 50px;background-color: orange;color: #fff;font-size: 12px;text-align: center;position: fixed;
+         right: 20px;bottom: 20px;text-decoration: none;display: none;
+   }
+</style>
+</head>
 <body>
-    <ul>
-
-    </ul>
+  <div id="box"></div>
+  <a href="javascript:;" id="top">返回顶部</a>
 </body>
-
-</html>
 <script>
-    // let ls = localStorage;
-    // ls.setItem(lsPage, 1);
+ window.onload = function () {
+  var oTop = document.getElementById('top')
+  // 获取页面可视区的高度
+  var clientHeight = document.documentElement.clientHeight
+  var timer = null
+  var isTop = true
 
+  // 滚动条滚动时触发
+  window.onscroll = function () {
+      console.log(9090)
+  var osTop = document.documentElement.scrollTop || document.body.scrollTop
+  if (osTop >= clientHeight) {
+    oTop.style.display = 'block'
+  } else {
+    oTop.style.display = 'none'
+  }
+  if (!isTop) {
+    clearInterval(timer)
+  }
+  isTop = false
+}
 
-function getPagination(ul,li,lsPage,endPage){
-    // let endPage = 21; //最终页数
-    // let ul = document.querySelector("ul");
-    let arr = ['<', '1', '2', '3', '4', '5', '...', '>']; //起始样式
-    let endarr = ['<', '...', '19', '20', '21', '>']
-
-    let str = '';
-    // let li = [];
-    // li = document.querySelectorAll("li");
-    Array.prototype.insert = function (index, item) {
-        this.splice(index, 0, item);
-    };
-    buildPa();
-    liclick();
-    getcolor();
-
-    function buildPa() {
-        for (let j = 0; j < arr.length; j++) {
-            str += `
-                <li>${arr[j]}</li>
-            `
-        }
-        ul.innerHTML = str;
-        str = '';
-        li = document.querySelectorAll("li");
-        liclick();
+oTop.onclick = function () {
+  timer = setInterval(function () {
+    // 获取滚动条距离顶部的高度
+    var osTop = document.documentElement.scrollTop || document.body.scrollTop
+    var ispeed = Math.floor(-osTop / 5)
+    document.documentElement.scrollTop = document.body.scrollTop = osTop + ispeed
+    isTop = true
+    if (osTop === 0) {
+       clearInterval(timer)
     }
-
-
-    function buildArr() {
-        console.log(arr)
-        let chazhi = -2;
-        for (let i = 2; i < arr.length - 2; i++) {
-            arr[i] = Number(ls.getItem(lsPage)) + Number(chazhi);
-            chazhi++;
-        }
-
-
-
-    }
-
-    function liclick() {
-        for (let i = 0; i < li.length; i++) {
-            li[i].onclick = function () {
-
-                ls.setItem(lsPage, li[i].innerHTML);
-
-                if (li[i].innerHTML >= 4 && li[i].innerHTML <= endPage) {
-                    console.log(arr[2])
-                    if (ls.getItem(lsPage) == (endPage - 2)) {
-
-                        buildArr();
-                        arr = ['<', '...', '19', '20', '21', '>'];
-                        arr.insert(2, 18);
-                        arr.insert(2, 17);
-                        buildPa();
-
-
-
-
-                    } else if (ls.getItem(lsPage) == (endPage - 1)) {
-
-                        buildArr();
-                        arr = ['<', '...', '19', '20', '21', '>'];
-                        arr.insert(2, 18);
-                        buildPa();
-
-
-                    } else if (ls.getItem(lsPage) == (endPage)) {
-                        buildArr();
-                        arr = ['<', '...', '19', '20', '21', '>'];
-
-                        buildPa();
-                    } else {
-                        arr.insert(1, '...');
-                        console.log(111, arr)
-                        buildArr();
-                        arr[7] = '...';
-                        arr[8] = '>'
-                        buildPa();
-                        arr.splice(6, 1);
-                    }
-                } else if (li[i].innerHTML < 4) {
-                    arr = ['<', '1', '2', '3', '4', '5', '...', '>'];
-                    buildPa();
-                }
-                getcolor();
-
-            }
-            li[0].onclick = function () {
-                ls.setItem(lsPage, 1);
-                arr = ['<', '1', '2', '3', '4', '5', '...', '>'];
-                buildPa();
-                li[1].style.color = 'red';
-            }
-            li[arr.length - 1].onclick = function () {
-                ls.setItem(lsPage, 21);
-                buildArr();
-                arr = ['<', '...', '19', '20', '21', '>'];
-
-                buildPa();
-                li[5].style.color = 'red';
-            }
-
-        }
-    }
-
-    function getcolor() {
-        for (let j = 0; j < li.length; j++) {
-            li[j].style.color = 'black';
-            console.log('wuwuw', li[j].innerHTML, ls.getItem(lsPage))
-
-            console.log(888)
-            if (li[j].innerText == ls.getItem(lsPage)) {
-                console.log(typeof li[j].innerHTML, typeof ls.getItem(lsPage))
-                li[j].style.color = 'red'
-            }
-        }
-    }
+  }, 30)
+ }
 }
 </script>
+</html>

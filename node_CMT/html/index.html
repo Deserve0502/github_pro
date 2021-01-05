@@ -24,9 +24,12 @@
         </div>
     </div>
     <iframe id="iframe_bottom" src="../static/bottom.html" frameborder="0"></iframe>
-    <!-- <div style="position: absolute;top: 0;right: 0;">
-        <iframe id="iframe_return" src="../static/return.html" frameborder="0"></iframe> -->
-    </div>
+    
+        <div class="return_con">
+            回到顶部
+        </div>
+        <script src="../js/gotop.js"></script>
+    
 
 </body>
 
@@ -41,9 +44,9 @@
     let oiframeComm = document.getElementById("iframe_comm");
     let oiframeEwm = document.getElementById("iframe_ewm");
     let oiframeBottom = document.getElementById("iframe_bottom");
-    let oiframeReturn = document.getElementById("iframe_return");
-    const PX = 'px';
+    // let oiframeReturn = document.getElementById("iframe_return");
 
+const PX = 'px';
 
     window.addEventListener('message',
         function (e) {

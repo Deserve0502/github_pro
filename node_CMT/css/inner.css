@@ -197,7 +197,6 @@
     /* padding-bottom: 10px; */
     padding-top: 0;
     box-sizing: border-box;
-    /* border-radius: 3px; */
     border-radius: 0px 0px 3px 3px;
     background-color: white;
     overflow: hidden;
@@ -357,6 +356,7 @@
 }
 .beginner_con {
     margin-bottom: 20px;
+    border-radius: 3px;
 }
 .beginner_ul {
     padding: 10px;
@@ -368,22 +368,23 @@
     line-height: 1.7em;
 
 }
-.beginner_ul li a, .API_ul li a, .About_ul li a{
+.beginner_ul li a, .API-ul li a, .About_ul li a{
     color: #08c;
 }
 .beginner_ul li a:hover {
     text-decoration: underline;
 }
-.API_ul li a:hover {
+.API-ul li a:hover {
     text-decoration: underline;
 }
-.About_ul li a:hover {
+.About-ul li a:hover {
     text-decoration: underline;
 }
 .list_title {
     border-bottom: 1px solid #eee !important;
-    font-size: 26px !important;
+    font-size: 24.5px !important;
     font-weight: bold !important;
+    margin: 30px 0 15px 0px;
 }
 .list_smallTitle {
     font-weight: bold;
@@ -391,15 +392,18 @@
     margin: 30px 0 15px;
     border-bottom: 1px solid #eee;
 }
-.API_ul, .About_ul  {
+.API-ul, .About_ul  {
   padding: 20px;
 }
-.API_ul > ul, .About_ul > li{
-    margin: 10px 0;
+.API-ul ul, .About_ul > li{
+    margin: 20px 0;
 }
-.API_ul > ul li{
+.API-ul ul li{
     list-style-type: disc !important;
     list-style-position: inside;
+    font-size: 14px;
+    margin-bottom: 10px;
+    min-height: 28px;
 }
 .author_con {
     background-color: white;
@@ -480,6 +484,9 @@
     width: 28px;
     height: 18.5px;
 }
+.reply_list {
+    margin-left: 12px !important;
+}
 .reply_con {
     background-color: white;
     border-radius: 4px;
@@ -489,11 +496,6 @@
 .reply_con img {
     width: 200px;
     
-}
-.reply_con > ul {
-    padding: 10px;
-    padding-bottom: 0;
-    margin-bottom: 10px;
 }
 .reply_con li {
     border-bottom: 1px solid #eee;
@@ -521,21 +523,23 @@
 }
 .reply_con li > p {
     font-size: 15px;
-    padding: 10px 20px;
+    /* padding: 10px 20px; */
 }
 .return_con {
     width: 24px;
     color: gray;
     padding: 12px 0 12px 5px;
     /* display: none; */
-    position: fixed;
     cursor: pointer;
     text-align: center;
     z-index: 20;
+    display: none;
     background-color: #fff;
     border-radius: 12px 0 0 12px;
     top: 173px;
     right: 0px;
+    position: fixed;
+    top: 425px;
 }
 .reply_con li a {
     color: #08c;
@@ -597,4 +601,11 @@
 }
 .people-coll:hover {
     cursor: pointer;
+}
+.clas {
+    display: inline-block;
+    margin-right: 3px;
+    color: #000;
+    background-color: #fcfafa;
+    padding: 4px 6px;
 }
