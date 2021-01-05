@@ -20,30 +20,38 @@
 </body>
 </html>
 <script>
+    let ls = localStorage;
     let integralArr = [
-        {inter:111,name:'小王'},
-        {inter:222,name:'小张'},
-        {inter:333,name:'小李'},
-        {inter:111,name:'小王'},
-        {inter:222,name:'小张'},
-        {inter:333,name:'小李'},
-        {inter:111,name:'小王'},
-        {inter:222,name:'小张'},
-        {inter:333,name:'小李'},
-        {inter:111,name:'小王'},
-        {inter:222,name:'小张'},
+        { inter: 22510, name: 'i5ting' },
+        {inter:15840,name:'alsotang'},
+        {inter:9990,name:'atian25'},
+        {inter:9350,name:'leapon'},
+        {inter:8780,name:'jiyinyiyong'},
+        {inter:7590,name:'yakczh'},
+        {inter:6855,name:'im-here'},
+        {inter:6125,name:'DevinXian'},
+        {inter:5815,name:'chapgaga'},
+        {inter:5375,name:'magicdawn'},
+
     ];
     let inter_ul = document.querySelector(".inter_ul");
     let str = '';
-    for(let i = 0; i < 11; i++){
+    for(let i = 0; i < integralArr.length; i++){
         str += `
         <li class='inter_li'>
            <span> ${integralArr[i].inter}</span>
-           <span> ${integralArr[i].name}</span>
+           <span class='inter_name'> ${integralArr[i].name}</span>
             </li>
         `
     }
     inter_ul.innerHTML = str;
+    let interName = document.querySelectorAll(".inter_name");
+    for(let i = 0; i < interName.length; i++){
+        interName[i].onclick = function(){
+            ls.setItem("author",interName[i].innerText);
+            window.top.location.href = '../html/principal.html'
+        }
+    }
     var ointerCon = document.querySelector('.inter_con')
     document.addEventListener('DOMContentLoaded', function() {
         let width = ointerCon.clientWidth

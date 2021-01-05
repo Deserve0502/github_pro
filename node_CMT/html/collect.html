@@ -5,42 +5,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/inner.css">
+    <link rel="stylesheet" href="../css/reset.css">
 </head>
 
 <body>
-    <div class="contain_con">
-        <ul class="contain_section">
-
-        </ul>
+    <iframe id="iframe_header" src="../static/header.html" frameborder="0"></iframe>
+    <div class="layout-left">
+        <div class="layout-left-left">
+            <div class="list_header list_multHeader">
+                <span>
+                    <span class="authorName"></span>
+                    收藏的话题</span>
+            </div>
+            <div class="contain_con coll_con">
+                <ul class=" contain_section">
+        
+                </ul>
+                </div>
+</div>
+        <div class="layout-right">
+            <iframe id="iframe_author" src="../static/inner_author.html" frameborder="0"></iframe>
+            <iframe id="iframe_comm" src="../static/inner_comm.html" frameborder="0"></iframe>
+            <iframe id="iframe_ewm" src="../static/inner_ewm.html" frameborder="0"></iframe>
+        </div>
     </div>
+    <iframe id="iframe_bottom" src="../static/bottom.html" frameborder="0"></iframe>
+    
+
 </body>
 
 </html>
 <script src="../js/common.js"></script>
 <script>
-    let ocontain_li = document.querySelectorAll(".contain_header > li ");
-    let ls = localStorage;
-    let containArr;
-    let topPage;
-    for (let i = 0; i < ocontain_li.length; i++) {
-        ocontain_li[i].onclick = function () {
-            ocontain_li[0].style.backgroundColor = '#f6f6f6';
-            for (let j = 0; j < ocontain_li.length; j++) {
-                ocontain_li[j].style.backgroundColor = '#f6f6f6';
-                ocontain_li[j].style.color = '#80bd01';
-                ocontain_li[i].style.backgroundColor = '#80bd01';
-                ocontain_li[i].style.color = '#fff';
-            }
-        }
-    }
-    ajax({
-        'url': 'https://cnodejs.org/api/v1/topics',
+    let oframeHeader = document.getElementById('iframe_header');
+    let oiframeAuthor = document.getElementById("iframe_author");
+    let oiframeComm = document.getElementById("iframe_comm");
+    let oiframeEwm = document.getElementById("iframe_ewm");
+    let oiframeBottom = document.getElementById("iframe_bottom");
+    let oiframeReturn = document.getElementById("iframe_return");
+    const PX = 'px';
+
+
+    window.addEventListener('message',
+        function (e) {
+            oframeHeader.style.height = e.data.oframeHeaderHeight + PX
+            oframeHeader.style.width = e.data.oframeHeaderWidth + PX
+        })
+  
+        window.addEventListener('message',
+        function (e) {
+            oiframeAuthor.style.height = e.data.oiframeAuthorHeight + 'px'
+            oiframeAuthor.style.width = e.data.oiframeAuthorWidth + 'px'
+        })
+  
+    window.addEventListener('message',
+        function (e) {
+            oiframeComm.style.height = e.data.oiframeCommHeight + PX
+            oiframeComm.style.width = e.data.oiframeCommWidth + PX
+        })
+    window.addEventListener('message',
+        function (e) {
+            oiframeEwm.style.height = e.data.oiframeEwmHeight + PX
+            oiframeEwm.style.width = e.data.oiframeEwmWidth + PX
+        })
+
+    window.addEventListener('message',
+        function (e) {
+            oiframeBottom.style.height = e.data.oiframeBottomHeight + PX
+            oiframeBottom.style.width = e.data.oiframeBottomWidth + PX
+        })
+
+
+
+
+
+
+let ocollectSection = document.querySelector(".contain_section");
+let oauthorName = document.querySelector(".authorName");
+
+let ls = localStorage;
+oauthorName.innerHTML = ls.getItem("author");
+ajax({
+        'url': 'https://cnodejs.org/api/v1/topic_collect/' + ls.getItem("author"),
         'type': 'get',
         data:{
-            page: (ls.getItem("page") !== 1 ? ls.getItem("page") : 1),
-            tab: (ls.getItem("tab") !== 'all' ? ls.getItem("tab") : 'all')
+           
         },
         success: function (data) {
             let dataJson = JSON.parse(data);
@@ -70,7 +120,7 @@
                 </li>
             `
             }
-            ocontain_section.innerHTML = ocontain_section_li;
+            ocollectSection.innerHTML = ocontain_section_li;
 
             let ocontainList = document.querySelectorAll(".con_title");
             for (let i = 0; i < ocontainList.length; i++) {
@@ -116,19 +166,4 @@
             }
         }
     })
-    let ocontain_section = document.querySelector('.contain_section');
-    var ocontainCon = document.querySelector('.contain_con');
-            document.addEventListener('DOMContentLoaded', function () {
-                setTimeout(function(){
-                    console.log(ocontainCon.clientHeight)
-                    let width = ocontainCon.clientWidth;
-                    let height = ocontainCon.clientHeight;
-                    window.parent.postMessage({
-                        ocontainHeight: 2039,
-                        ocontainWidth: width
-                    }, '*')
-                },1500)
-
-            }, false)
-
 </script>

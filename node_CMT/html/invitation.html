@@ -9,10 +9,9 @@
 </head>
 <body>
     <iframe id="iframe_header" src="../static/header.html" frameborder="0" margin="0px"></iframe>
-    <div style="width:90%;margin:auto;padding: 15px;margin-bottom: 20px;">
-        <div style="width: 76%;float: left;">
+    <div class="layout-left">
+        <div class="layout-left-left">
             <iframe id="iframe_invi" src="../static/inner_invitation.html" frameborder="0"></iframe>
-            <!-- <iframe id="iframe_reply" src="../static/inner_reply.html" frameborder="0"></iframe> -->
             </div>
             <div style="width: 22%;float: right;" class="layout_right">
                 <iframe id="iframe_author" src="../static/inner_author.html" frameborder="0"></iframe>
@@ -27,7 +26,6 @@
 <script>
      let oframeHeader = document.getElementById('iframe_header');
      let oframeInvi = document.getElementById('iframe_invi');
-    //  let oframeReply = document.getElementById('iframe_reply');
      let oiframeAuthor = document.getElementById("iframe_author");
      let oiframeOther = document.getElementById("iframe_other");
      let oframeNotopic = document.getElementById('iframe_notopic');
@@ -37,13 +35,10 @@
         oframeHeader.style.width = e.data.oframeHeaderWidth + 'px'
     })
     window.addEventListener('message', function (e) {
-        oframeInvi.style.height = e.data.oframeInviHeight + 'px'
+        console.log("invi",e)
+        oframeInvi.style.height = Number(e.data.oframeInviHeight) + 30 + 'px'
         oframeInvi.style.width = e.data.oframeInviWidth + 'px'
     })
-    // window.addEventListener('message', function (e) {
-    //     oframeReply.style.height = e.data.oframeReplyHeight + 'px'
-    //     oframeReply.style.width = e.data.oframeReplyWidth + 'px'
-    // })
         window.addEventListener('message',
     function (e) {
         oiframeAuthor.style.height = e.data.oiframeAuthorHeight + 'px'

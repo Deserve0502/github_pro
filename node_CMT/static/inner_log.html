@@ -11,8 +11,8 @@
     <div class="inner_log">
         <p>CNode：Node.js专业中文社区</p>
         <p>您可以
-            <a href=""> 登录 </a>或
-            <a href=""> 注册 </a>  , 也可以
+            <a href="../html/login.html" target="_top"> 登录 </a>或
+            <a href="../html/regiest.html" target="_top"> 注册 </a>  , 也可以
         </p>
         <button class="btn_prim">通过 GitHub 登录</button>
     </div>
@@ -20,8 +20,11 @@
 </html>
 <script src="../js/common.js"></script>
 <script>
-    console.log("刷新了");
      var oinnerLog = document.querySelector('.inner_log');
+     let btnGitEle = document.querySelector(".btn_prim");
+     btnGitEle.onclick = function(){
+        window.top.location.href = '../html/regiest.html'
+     }
     document.addEventListener('DOMContentLoaded', function() {
         let width = oinnerLog.clientWidth
         let height = oinnerLog.clientHeight
@@ -30,5 +33,4 @@
             oframeLogWidth: width
         }, '*')
     }, false)
-    // iframeAdaptionPost(oinnerLog,'oinnerLog');
 </script>

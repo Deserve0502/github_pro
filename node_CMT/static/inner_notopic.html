@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,26 +8,26 @@
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/inner.css">
 </head>
+
 <body>
     <div class="list_container topic_con">
         <div class="list_header">无人回复的话题</div>
         <ul class="list_section topic_ul">
-
+            <!-- classlist -->
         </ul>
     </div>
 </body>
+
 </html>
 <script src="../js/common.js"></script>
 <script>
     let topicArr = [];
     let ls = localStorage;
-    let allArr ;
+    let allArr;
     let otopicUl = document.querySelector(".topic_ul");
-    
     let topicStr = '';
-   
     let otopicCon = document.querySelector(".topic_con")
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         let width = otopicCon.clientWidth
         let height = otopicCon.clientHeight
         window.parent.postMessage({
@@ -42,29 +43,30 @@
         success: function (data) {
             let dataJson = JSON.parse(data);
             allArr = dataJson.data;
-              for(let i = 0;i<allArr.length;i++){
-                if(allArr[i].reply_count===0){
-                   topicArr.push(allArr[i]);
+
+            for (let i = 0; i < allArr.length; i++) {
+                if (allArr[i].reply_count === 0) {
+                    topicArr.push(allArr[i]);
                 }
             }
-            console.log(topicArr)
-            for(let i = 0; i < 5; i++){
-            topicStr += `
+            let notopicnum;
+            topicArr.length >= 5 ? notopicnum = 5 : notopicnum = topicArr.length;
+            for (let i = 0; i < notopicnum; i++) {
+                topicStr += `
             <li class='topic_li'>${topicArr[i].title}</li>
             `
-        }
-        otopicUl.innerHTML = topicStr;
-        let topicLi = document.querySelectorAll(".topic_ul > li")
-        for(let i = 0;i<topicLi.length;i++){
-           
-            topicLi[i].onclick = function(){
-                ls.setItem("articleId",topicArr[i].id);
-                ls.setItem("author",topicArr[i].author.loginname);
-            window.top.location.href = '../html/invitation.html'
-          
             }
+            otopicUl.innerHTML = topicStr;
+            let topicLi = document.querySelectorAll(".topic_ul > li")
+            for (let i = 0; i < topicLi.length; i++) {
+                topicLi[i].onclick = function () {
+                    ls.setItem("articleId", topicArr[i].id);
+                    ls.setItem("author", topicArr[i].author.loginname);
+                    window.top.location.href = '../html/invitation.html'
 
-        }
+                }
+
+            }
         }
     })
 </script>

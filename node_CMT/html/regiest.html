@@ -8,37 +8,30 @@
     <link rel="stylesheet" href="../css/inner.css">
 </head>
 <body>
-    <iframe id="iframe_header" src="../static/header.html" frameborder="0" margin="0px"></iframe>
+    <iframe id="iframe_header" src="../static/header.html" frameborder="0"></iframe>
     <div class="layout-left">
-        <div class="layout-left-left">
-            <iframe id="iframe_log" src="../static/log.html" frameborder="0"></iframe>
-        </div>
-        <div style="width: 22%;float: right;">
-           <iframe id="iframe_about" src="../static/inner_about.html" frameborder="0"></iframe>
-        </div>
+      <p>GitHub 登陆出错</p>
+      <ul class="cricle_ul">
+        <li>可能是您 GitHub 账号的 Email 已经在 CNode 注册过了。</li>
+        <li>也可能是您的 GitHub 没有提供公开的 Profile Email 导致注册失败。</li>
+        <p>请访问：https://github.com/settings/profile 设置您的公开 Email 地址。请确保您 GitHub 的个人主页有可见的 Email，如下图：</p>
+        <img src="../img/regist.png">
+      </ul>
     </div>
-    <div class="footer">
+   
     <iframe id="iframe_bottom" src="../static/bottom.html" frameborder="0"></iframe>
-</div>
+
 </body>
 </html>
 <script>
     let oframeHeader = document.getElementById('iframe_header');
-    let oiframeLog = document.getElementById("iframe_log");
-    let oframeAbout = document.getElementById("iframe_about");
+    
     let oiframeBottom = document.getElementById("iframe_bottom");
     window.addEventListener('message', function (e) {
         oframeHeader.style.height = e.data.oframeHeaderHeight + 'px'
         oframeHeader.style.width = e.data.oframeHeaderWidth + 'px'
     })
-    window.addEventListener('message', function (e) {
-        oiframeLog.style.height = e.data.oiframeLogHeight + 'px'
-        oiframeLog.style.width = e.data.oiframeLogWidth + 'px'
-    })
-    window.addEventListener('message', function (e) {
-        oframeAbout.style.height = e.data.oframeAboutHeight + 'px'
-        oframeAbout.style.width = e.data.oframeAboutWidth + 'px'
-    })
+   
     window.addEventListener('message',
     function (e) {
         oiframeBottom.style.height = e.data.oiframeBottomHeight + 'px'

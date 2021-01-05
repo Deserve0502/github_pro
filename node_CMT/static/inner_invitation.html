@@ -10,30 +10,8 @@
 </head>
 
 <body>
+    <div class="invitation_con">
     <div class="invi_con">
-
-        <!-- <div class="invi_up">
-        <span class="classify">
-            置顶
-        </span>
-        <span class="invi_title">
-            请大家遵纪守法，勿发布不合规内容 
-        </span>
-        <li >
-            <span>•</span>
-            <span>发布于</span>
-            <span>11天前</span>
-            <span>•</span>
-            <span>作者</span>
-            <span>某位低调的人</span>
-            <span>•</span>
-            <span>1234</span>
-            <span>次浏览</span>
-        </li>
-    </div>
-    <div class="invi_down">
-       <p>这是帖子内容</p> 
-    </div> -->
 
     </div>
     <div class="reply_con">
@@ -49,6 +27,7 @@
 
 
     </div>
+</div>
 </body>
 
 </html>
@@ -58,13 +37,17 @@
     let oinviCon = document.querySelector(".invi_con");
     let oreplyHeader = document.querySelector(".reply_header");
     let oreplyList = document.querySelector(".reply_list");
+    let oinvitationCon = document.querySelector(".invitation_con");
     document.addEventListener('DOMContentLoaded', function () {
-        let width = oinviCon.clientWidth
-        let height = oinviCon.clientHeight
+        setTimeout(function(){
+        let width = oinvitationCon.clientWidth
+        let height = oinvitationCon.clientHeight
         window.parent.postMessage({
-            oframeInviHeight: 1000,
+            oframeInviHeight: height,
             oframeInviWidth: width
         }, '*')
+        },1000)
+       
     }, false)
     let url = 'https://cnodejs.org/api/v1/topic/' + ls.getItem("articleId");
     let str;
@@ -78,14 +61,8 @@
         success: function (data) {
             let invitationArr = JSON.parse(data).data;
             console.log(invitationArr);
-            str = `
-            <div class="invi_up">
-             <span class="classify">
-            置顶
-        </span>
-        <span class="invi_title">
-            ${invitationArr.title}
-        </span>
+            str = `<div class="invi_up"><span class="classify">置顶</span>
+        <span class="invi_title">${invitationArr.title}</span>
         <li >
             <span>•</span>
             <span>发布于</span>
@@ -99,14 +76,11 @@
             <span>${invitationArr.visit_count}</span>
             <span>次浏览</span>
         </li>
-    </div>
-    <div class="invi_down">
-       <p>${invitationArr.content}</p> 
+    </div><div class="invi_down"><p>${invitationArr.content}</p> 
     </div>
             
             `
             oinviCon.innerHTML = str;
-            
         replyNum = `
         <span>${invitationArr.reply_count}</span>
         <span>回复</span>
@@ -135,23 +109,17 @@
         replyStr = replyStr.substr(9);
         oreplyList.innerHTML = replyStr;
         let inviAuthor = document.querySelectorAll(".invi_author");
-       
-        // let replyContent = document.querySelectorAll(".reply_list div:nth-of-type(2) > p");
         for(let i = 0;i<inviAuthor.length;i++){
             if(inviAuthor[i].innerHTML ===''){
                 inviAuthor[i].style.backgroundColor = 'white';
             }
         }
-        // console.log(222,replyContent)
-        // for(let i = 0;i<replyContent.length;i++){
-        //     console.log(replyContent[i].innerText)
-        //     if(replyContent[i].innerText.indexOf("@") !== -1){
-                
-        //     }
-        // }
+
       
             }else{
-                oreplyList.innerHTML = '无';
+                let oreplyCon = document.querySelector(".reply_con");
+                oreplyCon.style.display = 'none';
+                // oreplyList.innerHTML = '无';
             }
        
         

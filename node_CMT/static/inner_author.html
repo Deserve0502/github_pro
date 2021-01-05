@@ -11,21 +11,7 @@
 
 <body>
     <div class="list_container author_con">
-        <!-- <div class="list_header">
-            作者
-        </div>
-        <div class="author_section">
-       <div>
-           <img src="../img/peo1.jpg">
-           <span>作者名字</span>
-       </div>
-       <p>
-           积分：<span>355</span>
-       </p>
-       <p>
-           "好难不会做"
-       </p>
-    </div> -->
+
     </div>
 </body>
 
@@ -57,7 +43,7 @@
         <div class="author_section">
        <div>
            <img src="../img/peo1.jpg">
-           <span>   ${authorJson.loginname}</span>
+           <span class='goPrin'>   ${authorJson.loginname}</span>
        </div>
        <p>
            积分：<span>${authorJson.score}</span>
@@ -69,6 +55,11 @@
             
             `
             oauthorCon.innerHTML = autStr;
+            let ogoPrin = document.querySelector(".goPrin");
+                ogoPrin.onclick = function(){
+                    window.top.location.href = '../html/principal.html'
+                
+            }
         }
     })
 </script>

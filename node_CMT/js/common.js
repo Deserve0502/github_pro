@@ -21,16 +21,6 @@ function iframeAdaptionRecive(e){
    return height;
 }
 
-
-
-
-
-//  oframeId.style.height =height + 'px'
-// oframeId.style.width = width + 'px';
-
-
-
-
 function ajax(json) {
     if (window.XMLHttpRequest) {
         var ajax = new XMLHttpRequest();
@@ -51,6 +41,7 @@ function ajax(json) {
     ajax.onreadystatechange = function () {
         if (ajax.readyState == 4) {
             if (ajax.status >= 200 && ajax.status < 300 || ajax.status == 304) {
+                console.log(00000)
                 json.success(ajax.responseText);
             }
             else {
@@ -70,8 +61,7 @@ function getLastTime(containArrDate) {
     containArrDate = containArrDate.replace("T", " ");
     containArrDate = containArrDate.substr(0, 19)
     containArrDate = containArrDate.split(/[- : \/]/);
-    let startDate = Date.parse(new Date(containArrDate[0], containArrDate[1] - 1, containArrDate[2],
-        containArrDate[3], containArrDate[4], containArrDate[5]));
+    let startDate = Date.parse(new Date(containArrDate[0], containArrDate[1] - 1, containArrDate[2],containArrDate[3], containArrDate[4], containArrDate[5]));
     let dateDiff = new Date().getTime() - startDate;
     let dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000)); 
     let leave1 = dateDiff % (24 * 3600 * 1000);
@@ -86,7 +76,13 @@ function getLastTime(containArrDate) {
     for (let j = 0; j < timeFn.length; j++) {
         if (timeFn[j] !== '0') {
             if (j === 0) {
-                lastTime = timeFn[j] + '天前';
+                if(parseInt(timeFn[j]/365) !== 0){
+                    lastTime = parseInt(timeFn[j]/365) + '年前';
+                    break;
+                }else{
+                    lastTime = timeFn[j] + '天前';
+                }
+                
                 break;
             } else if (j === 1) {
                 lastTime = timeFn[j] + '小时前';
@@ -99,4 +95,113 @@ function getLastTime(containArrDate) {
         }
     }
     return lastTime;
+}
+function partRefresh() {
+    ocontain.src = "../static/contain.html";
+}
+
+function getPagination(ul,li,lsPage,endPage){
+    let startarr = ['«', '1', '2', '3', '4', '5', '...','»']; //起始样式
+    let endarr =  ['«', '...', '19', '20', '21','»']; //结束样式
+    let arr = [];
+    let str = '';
+    ls.setItem(lsPage,1)
+    Array.prototype.insert = function (index, item) {
+        this.splice(index, 0, item);
+    };
+    arr =  copyArr(startarr);
+    buildPa();
+    liclick();
+    getPaColor();
+    function buildPa() {
+        for (let j = 0; j < arr.length; j++) {
+            str += `
+                <li>${arr[j]}</li>
+            `
+        }
+        ul.innerHTML = str;
+        str = '';
+        li = document.querySelectorAll(".contain_pagination > li");
+        liclick();
+    }
+    function buildArr() {
+        console.log(arr)
+        let chazhi = -2;
+        for (let i = 2; i < arr.length - 2; i++) {
+            arr[i] = Number(ls.getItem(lsPage)) + Number(chazhi);
+            chazhi++;
+        }
+    }
+    function liclick() {
+        for (let i = 0; i < li.length; i++) {
+            li[0].classList.add("iconfont");
+            li[arr.length -1].classList.add("iconfont");
+            li[0].classList.add("smallSize");
+            li[arr.length -1].classList.add("smallSize");
+            li[i].onclick = function () {
+                ls.setItem(lsPage, li[i].innerHTML);
+                if (li[i].innerHTML >= 4 && li[i].innerHTML <= endPage) {
+                    if (ls.getItem(lsPage) == (endPage - 2)) {
+                        buildArr();
+                       arr =  copyArr(endarr);
+                        arr.insert(2, 18);
+                        arr.insert(2, 17);
+                        buildPa();
+                    } else if (ls.getItem(lsPage) == (endPage - 1)) {
+                        buildArr();
+                        arr =  copyArr(endarr);
+                        arr.insert(2, 18);
+                        buildPa();
+                    } else if (ls.getItem(lsPage) == (endPage)) {
+                        buildArr();
+                        arr =  copyArr(endarr);
+                        buildPa();
+                    } else {
+                        arr.insert(1, '...');
+                        buildArr();
+                        arr[7] = '...';
+                        arr[8] = '»';
+                        buildPa();
+                        arr.splice(6, 1);
+                    }
+                } else if (li[i].innerHTML < 4) {
+                    arr =  copyArr(startarr);
+                    buildPa();
+                }
+                getPaColor();
+                partRefresh();
+            }
+            li[0].onclick = function () {
+                ls.setItem(lsPage, 1);
+                arr =  copyArr(startarr);
+                buildPa();
+                li[1].style.color = '#80bd01';
+                partRefresh();
+            }
+            li[arr.length - 1].onclick = function () {
+                ls.setItem(lsPage, 21);
+                buildArr();
+                arr =  copyArr(endarr);
+                buildPa();
+                li[4].style.color = '#80bd01';
+                partRefresh();
+            }
+        }
+    }
+    function getPaColor() {
+        for (let j = 0; j < li.length; j++) {
+            li[j].style.color = '#999';
+            if (li[j].innerText == ls.getItem(lsPage)) {
+                li[j].style.color = '#80bd01'
+            }
+        }
+    }
+    function copyArr(arr){
+        let newarr = [];
+        for(let i = 0;i < arr.length; i++){
+            newarr.push(arr[i]);
+        }
+        return newarr;
+    }
+
 }
