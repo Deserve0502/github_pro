@@ -1,70 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>Document</title>
-    <link rel="stylesheet" href="../css/inner.css">
-    <link rel="stylesheet" href="../css/reset.css">
+    <link rel='stylesheet' href='../css/inner.css'>
+    <link rel='stylesheet' href='../css/reset.css'>
+    <link rel='icon' type='image/x-icon' href='../img/cnode_icon_32.png' />
 </head>
 <body>
-    <iframe id="iframe_header" src="../static/header.html" frameborder="0" margin="0px"></iframe>
-    <div class="layout-left">
-        <div class="layout-left-left">
-            <iframe id="iframe_invi" src="../static/inner_invitation.html" frameborder="0"></iframe>
+    <iframe id='iframe_header' src='../static/header.html' frameborder='0'></iframe>
+    <div class='layout-left'>
+        <div class='layout-left-left'>
+            <iframe id='iframe_invi' src='../static/inner_invitation.html' frameborder='0'></iframe>
             </div>
-            <div style="width: 22%;float: right;" class="layout_right">
-                <iframe id="iframe_author" src="../static/inner_author.html" frameborder="0"></iframe>
-                <iframe id="iframe_other" src="../static/inner_other.html" frameborder="0"></iframe>
-                <iframe id="iframe_notopic" src="../static/inner_notopic.html" frameborder="0"></iframe>
+            <div class='layout-right'>
+                <iframe id='iframe_author' src='../static/inner_author.html' frameborder='0'></iframe>
+                <iframe id='iframe_other' src='../static/inner_other.html' frameborder='0'></iframe>
+                <iframe id='iframe_notopic' src='../static/inner_notopic.html' frameborder='0'></iframe>
                 </div>
         </div>
-        <div class="return_con">
+        <div class='return_con'>
             回到顶部
         </div>
-        <script src="../js/gotop.js"></script>
-            <iframe id="iframe_bottom" src="../static/bottom.html" frameborder="0"></iframe>
+        <script src='../js/gotop.js'></script>
+        <iframe id='iframe_bottom' src='../static/bottom.html' frameborder='0'></iframe>
 </body>
 </html>
-<script src="../js/common.js"></script>
+<script src='../js/common.js'></script>
 <script>
-     let oframeHeader = document.getElementById('iframe_header');
-     let oframeInvi = document.getElementById('iframe_invi');
-     let oiframeAuthor = document.getElementById("iframe_author");
-     let oiframeOther = document.getElementById("iframe_other");
-     let oframeNotopic = document.getElementById('iframe_notopic');
-    let oiframeBottom = document.getElementById("iframe_bottom");
+     let oframeHeader = document.querySelector('#iframe_header');
+     let oframeInvi = document.querySelector('#iframe_invi');
+     let oiframeAuthor = document.querySelector('#iframe_author');
+     let oiframeOther = document.querySelector('#iframe_other');
+     let oframeNotopic = document.querySelector('#iframe_notopic');
+     let oiframeBottom = document.querySelector('#iframe_bottom');
     window.addEventListener('message', function (e) {
-        oframeHeader.style.height = e.data.oframeHeaderHeight + 'px'
-        oframeHeader.style.width = e.data.oframeHeaderWidth + 'px'
+        oframeHeader.style.height = e.data.oframeHeaderHeight + PX;
+        oframeHeader.style.width = e.data.oframeHeaderWidth + PX;
     })
     window.addEventListener('message', function (e) {
-        console.log("invi",e)
-        oframeInvi.style.height = Number(e.data.oframeInviHeight) + 30 + 'px'
-        oframeInvi.style.width = e.data.oframeInviWidth + 'px'
+        oframeInvi.style.height = Number(e.data.oframeInviHeight) + 30 + PX;
+        oframeInvi.style.width = e.data.oframeInviWidth + PX;
     })
-        window.addEventListener('message',
-    function (e) {
-        oiframeAuthor.style.height = e.data.oiframeAuthorHeight + 'px'
-        oiframeAuthor.style.width = e.data.oiframeAuthorWidth + 'px'
+        window.addEventListener('message',function (e) {
+        oiframeAuthor.style.height = e.data.oiframeAuthorHeight + PX;
+        oiframeAuthor.style.width = e.data.oiframeAuthorWidth + PX;
     })
-    window.addEventListener('message',
-    function (e) {
-        console.log(e)
-        oiframeOther.style.height = e.data.oiframeOtherHeight + 'px'
-        oiframeOther.style.width = e.data.oiframeOtherWidth + 'px'
+    window.addEventListener('message',function (e) {
+        oiframeOther.style.height = e.data.oiframeOtherHeight + PX;
+        oiframeOther.style.width = e.data.oiframeOtherWidth + PX;
     })
-    window.addEventListener('message',
-    function (e) {
-        oiframeBottom.style.height = e.data.oiframeBottomHeight + 'px'
-        oiframeBottom.style.width = e.data.oiframeBottomWidth + 'px'
+    window.addEventListener('message',function (e) {
+        oiframeBottom.style.height = e.data.oiframeBottomHeight + PX;
+        oiframeBottom.style.width = e.data.oiframeBottomWidth + PX;
     })
-    window.addEventListener('message',
-    function (e) {
-        oframeNotopic.style.height = e.data.oframeNotopicHeight + 'px'
-        oframeNotopic.style.width = e.data.oframeNotopicWidth + 'px'
+    window.addEventListener('message',function (e) {
+        oframeNotopic.style.height = e.data.oframeNotopicHeight + PX;
+        oframeNotopic.style.width = e.data.oframeNotopicWidth + PX;
     })
-
-
-
 </script>

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/inner.css">
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/markdown.css">
+    <link rel="stylesheet" href="../font_a8y1z82ypvk/iconfont.css">
 </head>
 
 <body>
@@ -18,8 +19,6 @@
     <div class="reply_con">
 
         <div class="list_header reply_header">
-            <!-- <span>34</span>
-            <span>回复</span> -->
         </div>
         <ul class="reply_list">
            
@@ -34,7 +33,6 @@
 </html>
 <script src="../js/common.js"></script>
 <script>
-    let ls = localStorage;
     let oinviCon = document.querySelector(".invi_con");
     let oreplyHeader = document.querySelector(".reply_header");
     let oreplyList = document.querySelector(".reply_list");
@@ -82,6 +80,8 @@
             
             `
             oinviCon.innerHTML = str;
+            let title = document.querySelector("title");
+            title.innerHTML = invitationArr.content;
         replyNum = `
         <span>${invitationArr.reply_count}</span>
         <span>回复</span>
@@ -101,6 +101,8 @@
                 <span>•</span>
                 <span>${getLastTime(replyArr[i].create_at)}</span>
                 <span class='invi_author'>${replyArr[i].author.loginname===ls.getItem("author")?'作者':''}</span>
+               
+                <span class='thumb iconfont'>&#xe603; <span class='thumb-num'>${replyArr[i].ups.length}</span></span>
             </div>
             <p class='reply_content'>${replyArr[i].content}</p>
             </li>
@@ -110,6 +112,18 @@
         replyStr = replyStr.substr(9);
         oreplyList.innerHTML = replyStr;
         let inviAuthor = document.querySelectorAll(".invi_author");
+        let othumb = document.querySelectorAll(".thumb");
+        let othumbNum = document.querySelectorAll(".thumb-num");
+        for(let i = 0;i<replyArr.length;i++){
+            if(othumbNum[i].innerText === '0'){
+                othumb[i].style.display = 'none';
+            }
+
+        }
+
+
+
+
         for(let i = 0;i<inviAuthor.length;i++){
             if(inviAuthor[i].innerHTML ===''){
                 inviAuthor[i].style.backgroundColor = 'white';

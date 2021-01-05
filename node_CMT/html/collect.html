@@ -7,6 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="../css/inner.css">
     <link rel="stylesheet" href="../css/reset.css">
+    <link rel="icon" type="image/x-icon" href="../img/cnode_icon_32.png" />
 </head>
 
 <body>
@@ -16,14 +17,13 @@
             <div class="list_header list_multHeader">
                 <span>
                     <span class="authorName"></span>
-                    收藏的话题</span>
+                    收藏的话题
+                </span>
             </div>
             <div class="contain_con coll_con">
-                <ul class=" contain_section">
-        
-                </ul>
-                </div>
-</div>
+                <ul class=" contain_section"></ul>
+            </div>
+        </div>
         <div class="layout-right">
             <iframe id="iframe_author" src="../static/inner_author.html" frameborder="0"></iframe>
             <iframe id="iframe_comm" src="../static/inner_comm.html" frameborder="0"></iframe>
@@ -35,110 +35,93 @@
     </div>
     <script src="../js/gotop.js"></script>
     <iframe id="iframe_bottom" src="../static/bottom.html" frameborder="0"></iframe>
-    
-
 </body>
 
 </html>
 <script src="../js/common.js"></script>
 <script>
-    let oframeHeader = document.getElementById('iframe_header');
-    let oiframeAuthor = document.getElementById("iframe_author");
-    let oiframeComm = document.getElementById("iframe_comm");
-    let oiframeEwm = document.getElementById("iframe_ewm");
-    let oiframeBottom = document.getElementById("iframe_bottom");
-    let oiframeReturn = document.getElementById("iframe_return");
-    const PX = 'px';
+    let oframeHeader = document.querySelector('#iframe_header');
+    let oiframeAuthor = document.querySelector("#iframe_author");
+    let oiframeComm = document.querySelector("#iframe_comm");
+    let oiframeEwm = document.querySelector("#iframe_ewm");
+    let oiframeBottom = document.querySelector("#iframe_bottom");
+    let oiframeReturn = document.querySelector("#iframe_return");
+    window.addEventListener('message', function (e) {
+        oframeHeader.style.height = e.data.oframeHeaderHeight + PX;
+        oframeHeader.style.width = e.data.oframeHeaderWidth + PX;
+    })
+
+    window.addEventListener('message', function (e) {
+        oiframeAuthor.style.height = e.data.oiframeAuthorHeight + PX;
+        oiframeAuthor.style.width = e.data.oiframeAuthorWidth + PX;
+    })
+
+    window.addEventListener('message', function (e) {
+        oiframeComm.style.height = e.data.oiframeCommHeight + PX;
+        oiframeComm.style.width = e.data.oiframeCommWidth + PX;
+    })
+    window.addEventListener('message', function (e) {
+        oiframeEwm.style.height = e.data.oiframeEwmHeight + PX;
+        oiframeEwm.style.width = e.data.oiframeEwmWidth + PX;
+    })
+
+    window.addEventListener('message', function (e) {
+        oiframeBottom.style.height = e.data.oiframeBottomHeight + PX;
+        oiframeBottom.style.width = e.data.oiframeBottomWidth + PX;
+    })
 
 
-    window.addEventListener('message',
-        function (e) {
-            oframeHeader.style.height = e.data.oframeHeaderHeight + PX
-            oframeHeader.style.width = e.data.oframeHeaderWidth + PX
-        })
-  
-        window.addEventListener('message',
-        function (e) {
-            oiframeAuthor.style.height = e.data.oiframeAuthorHeight + 'px'
-            oiframeAuthor.style.width = e.data.oiframeAuthorWidth + 'px'
-        })
-  
-    window.addEventListener('message',
-        function (e) {
-            oiframeComm.style.height = e.data.oiframeCommHeight + PX
-            oiframeComm.style.width = e.data.oiframeCommWidth + PX
-        })
-    window.addEventListener('message',
-        function (e) {
-            oiframeEwm.style.height = e.data.oiframeEwmHeight + PX
-            oiframeEwm.style.width = e.data.oiframeEwmWidth + PX
-        })
-
-    window.addEventListener('message',
-        function (e) {
-            oiframeBottom.style.height = e.data.oiframeBottomHeight + PX
-            oiframeBottom.style.width = e.data.oiframeBottomWidth + PX
-        })
-
-
-
-
-
-
-let ocollectSection = document.querySelector(".contain_section");
-let oauthorName = document.querySelector(".authorName");
-
-let ls = localStorage;
-oauthorName.innerHTML = ls.getItem("author");
-ajax({
+    let ocollectSection = document.querySelector(".contain_section");
+    let oauthorName = document.querySelector(".authorName");
+    oauthorName.innerHTML = ls.getItem("author");
+    /**
+     * 渲染收藏列表
+     */
+    ajax({
         'url': 'https://cnodejs.org/api/v1/topic_collect/' + ls.getItem("author"),
         'type': 'get',
-        data:{
-           
-        },
         success: function (data) {
             let dataJson = JSON.parse(data);
             containArr = dataJson.data;
-            console.log(containArr)
             let ocontain_section_li = '';
             for (let i = 0; i < containArr.length; i++) {
                 ocontain_section_li += `
             <li>
-                    <span class='goPrin'>
-                        <img src="../img/peo1.jpg">
-                    </span>
-                    <span>
-                        <span class="reply_num">${containArr[i].reply_count}</span>
-                        <span>/</span>
-                        <span class="click_num">${containArr[i].visit_count}</span>
-                    </span>
-                    <span class="classify">${containArr[i].tab}</span>
-                    <i style="display:none" class="isTop">${containArr[i].top}</i>
-                    <span class='con_title'>${containArr[i].title}</span>
-                    <div>
-                        <img src="../img/peo2.png">
-                    <span>
-                        ${getLastTime(containArr[i].last_reply_at)}
-                    </span>
-                </div>
-                </li>
+                <span class='goPrin'>
+                    <img src="../img/peo1.jpg">
+                </span>
+                <span>
+                    <span class="reply_num">${containArr[i].reply_count}</span>
+                    <span>/</span>
+                    <span class="click_num">${containArr[i].visit_count}</span>
+                </span>
+                <span class="classify">${containArr[i].tab}</span>
+                <i style="display:none" class="isTop">${containArr[i].top}</i>
+                <span class='con_title'>${containArr[i].title}</span>
+                <div>
+                    <img src="../img/peo2.png">
+                <span>
+                    ${getLastTime(containArr[i].last_reply_at)}
+                </span>
+            </div>
+            </li>
             `
             }
             ocollectSection.innerHTML = ocontain_section_li;
-
+            //点击跳转详情事件
             let ocontainList = document.querySelectorAll(".con_title");
             for (let i = 0; i < ocontainList.length; i++) {
                 ocontainList[i].onclick = function () {
                     ls.setItem("articleId", containArr[i].id);
                     ls.setItem("author", containArr[i].author.loginname);
-                    console.log(ls.getItem("articleId"));
                     window.top.location.href = '../html/invitation.html'
 
                 }
             }
+            //点击跳转个人中心
             let ogoPrin = document.querySelectorAll(".goPrin");
-            for(let i = 0; i < ogoPrin.length; i++){
-                ogoPrin[i].onclick = function(){
+            for (let i = 0; i < ogoPrin.length; i++) {
+                ogoPrin[i].onclick = function () {
                     ls.setItem("articleId", containArr[i].id);
                     ls.setItem("author", containArr[i].author.loginname);
                     window.top.location.href = '../html/principal.html'
@@ -154,9 +137,9 @@ ajax({
                     } else {
                         if (oconClassify[i].innerHTML === 'share') {
                             oconClassify[i].innerHTML = '分享';
-                        } else if (oconClassify[i].innerHTML === 'dev')  {
+                        } else if (oconClassify[i].innerHTML === 'dev') {
                             oconClassify[i].innerHTML = '测试';
-                        } else if (oconClassify[i].innerHTML === 'job'){
+                        } else if (oconClassify[i].innerHTML === 'job') {
                             oconClassify[i].innerHTML = '招聘';
                         } else {
                             oconClassify[i].innerHTML = '问答';

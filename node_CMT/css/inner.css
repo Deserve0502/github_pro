@@ -475,6 +475,20 @@
 .invi_down p {
     margin: 10px;
 }
+
+.thumb {
+    float: right;
+    margin-right: 30px;
+    opacity: 0.6;
+    font-size: 15px !important;
+    color: #000 !important;
+}
+.thumb:hover {
+   
+    text-decoration: none !important;
+    opacity: 1;
+    cursor: pointer;
+}
 .invi_author {
     background-color: #6ba44e;
     color: white !important;

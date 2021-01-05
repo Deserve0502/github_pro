@@ -28,12 +28,12 @@ header {
     transition: all 0.3s;
 }
 .header_search > span {
- 
     width: 27px;
     height: 100%;
     text-align: center;
     line-height: 23px;
     color: #666;
+    margin-left: 1px;
 }
 .header_search > input {
     padding: 0;

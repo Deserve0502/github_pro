@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>CNode：Node.js专业中文社区</title>
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/inner.css">
+    <link rel="icon" type="image/x-icon" href="../img/cnode_icon_32.png" />
 </head>
 <body>
     <iframe id="iframe_header" src="../static/header.html" frameborder="0" margin="0px"></iframe>
@@ -23,25 +24,25 @@
 </body>
 </html>
 <script>
-    let oframeHeader = document.getElementById('iframe_header');
-    let oiframeLog = document.getElementById("iframe_log");
-    let oframeAbout = document.getElementById("iframe_about");
-    let oiframeBottom = document.getElementById("iframe_bottom");
+    let oframeHeader = document.querySelector('#iframe_header');
+    let oiframeLog = document.querySelector("#iframe_log");
+    let oframeAbout = document.querySelector("#iframe_about");
+    let oiframeBottom = document.querySelector("#iframe_bottom");
     window.addEventListener('message', function (e) {
-        oframeHeader.style.height = e.data.oframeHeaderHeight + 'px'
-        oframeHeader.style.width = e.data.oframeHeaderWidth + 'px'
+        oframeHeader.style.height = e.data.oframeHeaderHeight + PX;
+        oframeHeader.style.width = e.data.oframeHeaderWidth + PX;
     })
     window.addEventListener('message', function (e) {
-        oiframeLog.style.height = e.data.oiframeLogHeight + 'px'
-        oiframeLog.style.width = e.data.oiframeLogWidth + 'px'
+        oiframeLog.style.height = e.data.oiframeLogHeight + PX;
+        oiframeLog.style.width = e.data.oiframeLogWidth + PX;
     })
     window.addEventListener('message', function (e) {
-        oframeAbout.style.height = e.data.oframeAboutHeight + 'px'
-        oframeAbout.style.width = e.data.oframeAboutWidth + 'px'
+        oframeAbout.style.height = e.data.oframeAboutHeight + PX;
+        oframeAbout.style.width = e.data.oframeAboutWidth + PX;
     })
     window.addEventListener('message',
     function (e) {
-        oiframeBottom.style.height = e.data.oiframeBottomHeight + 'px'
-        oiframeBottom.style.width = e.data.oiframeBottomWidth + 'px'
+        oiframeBottom.style.height = e.data.oiframeBottomHeight + PX;
+        oiframeBottom.style.width = e.data.oiframeBottomWidth + PX;
     })
 </script>

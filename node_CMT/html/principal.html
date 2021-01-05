@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/inner.css">
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../font_a8y1z82ypvk/iconfont.css">
+    <link rel="icon" type="image/x-icon" href="../img/cnode_icon_32.png" />
 </head>
 
 <body>
@@ -17,46 +18,28 @@
             <div class="pri">
                 <div class="list_header list_multHeader">
                     <span>主页</span>
-
-
                 </div>
-                <ul class="principal-up">
-
-
-
-                </ul>
+                <ul class="principal-up"></ul>
             </div>
-
             <div class="recent_create">
                 <div class="list_header list_multHeader">
                     <span></span>
                     <span>最近创建的话题</span>
                 </div>
-                <ul class="create_ul contain_section">
-
-
-
-                </ul>
+                <ul class="create_ul contain_section"></ul>
                 <div class="more">
                     <span> 查看更多 »</span>
                 </div>
-
-
             </div>
             <div class="recent_reply">
                 <div class="list_header list_multHeader">
                     <span></span>
                     <span>最近回复的话题</span>
                 </div>
-                <ul class="reply_ul contain_section">
-
-
-
-                </ul>
+                <ul class="reply_ul contain_section"></ul>
                 <div class="more">
                     <span> 查看更多 » </span>
                 </div>
-
             </div>
         </div>
         <div class="layout-right">
@@ -75,38 +58,35 @@
 </html>
 <script src="../js/common.js"></script>
 <script>
-    let oframeHeader = document.getElementById('iframe_header');
-    let oframeInvi = document.getElementById('iframe_invi');
-    //  let oframeReply = document.getElementById('iframe_reply');
-    let oiframeAuthor = document.getElementById("iframe_author");
-    let oiframeOther = document.getElementById("iframe_other");
-    let oframeNotopic = document.getElementById('iframe_notopic');
-    let oiframeBottom = document.getElementById("iframe_bottom");
+    let oframeHeader = document.querySelector('#iframe_header');
+    let oframeInvi = document.querySelector('#iframe_invi');
+    let oiframeAuthor = document.querySelector("#iframe_author");
+    let oiframeOther = document.querySelector("#iframe_other");
+    let oframeNotopic = document.querySelector('#iframe_notopic');
+    let oiframeBottom = document.querySelector("#iframe_bottom");
     let principalUp = document.querySelector(".principal-up");
     let recentCreate = document.querySelector(".recent_create");
     let recentReply = document.querySelector(".recent_reply");
-    let ls = localStorage;
-    let url1 = 'https://cnodejs.org/api/v1/user/' + ls.getItem("author");
-    let reTopicStr;
-    let topicReplyStr;
-    let principalUpStr;
+    let urlAuthorMess = 'https://cnodejs.org/api/v1/user/' + ls.getItem("author");
+    let urlCollectMess = 'https://cnodejs.org/api/v1/topic_collect/' + ls.getItem("author");
     let createUl = document.querySelector(".create_ul");
     let replyUl = document.querySelector(".reply_ul");
+    let reTopicStr,topicReplyStr,principalUpStr,numTopic,numReply;
 
+
+    /**
+     * 个人主要信息渲染
+    */
     ajax({
-        'url': url1,
+        'url': urlAuthorMess,
         'type': 'get',
         success: function (data) {
             let authorJson = JSON.parse(data).data;
             console.log(authorJson);
             principalUpStr = `
-            <li>
-                    <img src="../img/peo2.png">
-                    <span>${authorJson.loginname}</span>
-                </li>
+                <li><img src="../img/peo2.png"><span>${authorJson.loginname}</span></li>
                 <li>${authorJson.score}积分</li>
-                <li class='iconfont people-mess'>&#xe63e;
-http://${authorJson.loginname}.com</li>
+                <li class='iconfont people-mess'>&#xe63e;http://${authorJson.loginname}.com</li>
                 <li class='iconfont people-mess'>&#xe602; 北京</li>
                 <li class='iconfont people-mess'>&#xe773; @${authorJson.loginname}</li>
                 <li class='iconfont people-mess'>&#xe613; ${authorJson.loginname}微博</li>
@@ -115,152 +95,124 @@ http://${authorJson.loginname}.com</li>
             principalUp.innerHTML = principalUpStr;
             let reTopic = authorJson.recent_topics;
             let reReply = authorJson.recent_replies;
-
-            let numTopic;
-            reTopic.length >=5 ? numTopic=5:numTopic=reTopic.length;
-            if(numTopic===0){
+            //最近创建的话题
+            reTopic.length >= 5 ? numTopic = 5 : numTopic = reTopic.length;
+            if(numTopic === 0){
                 recentCreate.style.display = 'none';
             }
-                for (let i = 0; i < numTopic; i++) {
-                    reTopicStr += `
+            for (let i = 0; i < numTopic; i ++) {
+                reTopicStr += `
                 <li>
-                            <span>
-                                <img src="../img/peo1.jpg">
-                            </span>
-                            <span>
-                                <span class="reply_num">
-                                0
-                                    </span>
-                               <span>/</span>
-                                <span class="click_num">
-33
-                                    </span>
-                            </span>
-                            <span class='con_title'>${reTopic[i].title}</span>
-                            <div>
-                                <img src="../img/peo2.png">
-                            <span>
-                                ${getLastTime(reTopic[i].last_reply_at)}
-                               
-                            </span>
-                        </div>
-                        </li>
-                
-                `
-                }
-                reTopicStr = reTopicStr.substr(9);
-                createUl.innerHTML = reTopicStr;
-                let createLi = document.querySelectorAll(".create_ul > li ");
-                
-                for (let i = 0; i < createLi.length; i++) {
-                    createLi[i].onclick = function () {
-                        ls.setItem("articleId", reTopic[i].id);
-                        ls.setItem("author", reTopic[i].author.loginname);
-                        console.log(ls.getItem("articleId"));
-                        window.top.location.href = '../html/invitation.html'
-
-                    }
-                
-
-
+                    <span><img src="../img/peo1.jpg"></span>
+                    <span><span class="reply_num">0</span>
+                        <span>/</span>
+                        <span class="click_num">33</span>
+                    </span>
+                    <span class='con_title'>${reTopic[i].title}</span>
+                    <div>
+                        <img src="../img/peo2.png">
+                        <span>${getLastTime(reTopic[i].last_reply_at)}</span>
+                </div>
+                </li>
+            `
             }
-            
-            let numReply;
-            reReply.length >=5 ? numReply=5:numReply=reReply.length;
-            if(numReply===0){
+            reTopicStr = reTopicStr.substr(9);
+            createUl.innerHTML = reTopicStr;
+            let createLi = document.querySelectorAll(".create_ul > li ");
+            //设置点击跳转事件
+            for (let i = 0; i < createLi.length; i ++) {
+                createLi[i].onclick = function () {
+                    ls.setItem("articleId", reTopic[i].id);
+                    ls.setItem("author", reTopic[i].author.loginname);
+                    window.top.location.href = '../html/invitation.html'
+                }
+            }
+            //最近回复的话题
+            reReply.length >= 5 ? numReply = 5 : numReply = reReply.length;
+            if(numReply === 0){
                 recentReply.style.display = 'none';
             }
-            for (let i = 0; i < numReply; i++) {
+            for (let i = 0; i < numReply; i ++) {
                 topicReplyStr += `
                 <li>
-                            <span>
-                                <img src="../img/peo1.jpg">
-                            </span>
-                            <span>
-                                <span class="reply_num">
-                                0
-                                    </span>
-                               <span>/</span>
-                                <span class="click_num">
-33
-                                    </span>
-                            </span>
-                            <span class='con_title'>${reReply[i].title}</span>
-                            <div>
-                                <img src="../img/peo2.png">
-                            <span>
-                                ${getLastTime(reReply[i].last_reply_at)}
-                               
-                            </span>
-                        </div>
-                        </li>
-                
+                    <span>
+                        <img src="../img/peo1.jpg">
+                    </span>
+                    <span>
+                        <span class="reply_num">0</span>
+                        <span>/</span>
+                        <span class="click_num">33</span>
+                    </span>
+                    <span class='con_title'>${reReply[i].title}</span>
+                    <div>
+                        <img src="../img/peo2.png">
+                        <span>${getLastTime(reReply[i].last_reply_at)}</span>
+                    </div>
+                </li>
                 `
             }
             topicReplyStr = topicReplyStr.substr(9);
             replyUl.innerHTML = topicReplyStr;
-
+            //设置点击跳转事件
             let replyLi = document.querySelectorAll(".reply_ul > li ");
-            for (let i = 0; i < replyLi.length; i++) {
+            for (let i = 0; i < replyLi.length; i ++) {
                 replyLi[i].onclick = function () {
                     ls.setItem("articleId", reReply[i].id);
                     ls.setItem("author", reReply[i].author.loginname);
                     console.log(ls.getItem("articleId"));
                     window.top.location.href = '../html/invitation.html'
-
                 }
             }
-
-        
         }
 
     })
-
-    let url2 = 'https://cnodejs.org/api/v1/topic_collect/' + ls.getItem("author");
+    
+    /**
+     * 个人收藏话题
+    */
     ajax({
-        'url': url2,
+        'url': urlCollectMess,
         'type': 'get',
         success: function (data) {
             let authorJson1 = JSON.parse(data).data;
-            console.log("colo", authorJson1);
             let topicCol = document.createElement("li");
             let principalUpLi = document.querySelectorAll(".principal-up > li");
             topicCol.innerHTML = authorJson1.length + '个话题收藏';
             topicCol.classList.add("people-mess");
             topicCol.classList.add("people-coll");
+            //话题收藏插入到个人信息第二行
             principalUp.insertBefore(topicCol, principalUpLi[2]);
             let coll = document.querySelector(".people-coll");
             coll.onclick = function(){
                 window.top.location.href = '../html/collect.html';
             }
-
         }
     })
 
     window.addEventListener('message', function (e) {
-        oframeHeader.style.height = e.data.oframeHeaderHeight + 'px'
-        oframeHeader.style.width = e.data.oframeHeaderWidth + 'px'
+        oframeHeader.style.height = e.data.oframeHeaderHeight + PX;
+        oframeHeader.style.width = e.data.oframeHeaderWidth + PX;
     })
 
     window.addEventListener('message',
         function (e) {
-            oiframeAuthor.style.height = e.data.oiframeAuthorHeight + 'px'
-            oiframeAuthor.style.width = e.data.oiframeAuthorWidth + 'px'
+            oiframeAuthor.style.height = e.data.oiframeAuthorHeight + PX;
+            oiframeAuthor.style.width = e.data.oiframeAuthorWidth + PX;
         })
     window.addEventListener('message',
         function (e) {
             console.log(e)
-            oiframeOther.style.height = e.data.oiframeOtherHeight + 'px'
-            oiframeOther.style.width = e.data.oiframeOtherWidth + 'px'
+            oiframeOther.style.height = e.data.oiframeOtherHeight + PX;
+            oiframeOther.style.width = e.data.oiframeOtherWidth + PX;
         })
     window.addEventListener('message',
         function (e) {
-            oiframeBottom.style.height = e.data.oiframeBottomHeight + 'px'
-            oiframeBottom.style.width = e.data.oiframeBottomWidth + 'px'
+            oiframeBottom.style.height = e.data.oiframeBottomHeight + PX;
+            oiframeBottom.style.width = e.data.oiframeBottomWidth + PX;
         })
     window.addEventListener('message',
         function (e) {
-            oframeNotopic.style.height = e.data.oframeNotopicHeight + 'px'
-            oframeNotopic.style.width = e.data.oframeNotopicWidth + 'px'
+            oframeNotopic.style.height = e.data.oframeNotopicHeight + PX;
+            oframeNotopic.style.width = e.data.oframeNotopicWidth + PX;
         })
 </script>
