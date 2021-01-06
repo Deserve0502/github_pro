@@ -21,26 +21,17 @@
 <script>
     let otherCon = document.querySelector(".other_con");
     let ootherSection = document.querySelector(".other_section");
-
     let url = 'https://cnodejs.org/api/v1/user/' + ls.getItem("author");
     let otherStr;
-    document.addEventListener('DOMContentLoaded', function() {
-        let width = otherCon.clientWidth
-        let height = otherCon.clientHeight
-        window.parent.postMessage({
-            oiframeOtherHeight: height,
-            oiframeOtherWidth: width
-        }, '*')
-    }, false);
     ajax({
         'url': url,
         'type': 'get',
         success: function (data) {
             let otherArr = JSON.parse(data).data.recent_topics;
-            if(otherArr.length===0){
+            if(otherArr.length === 0){
                 ootherSection.innerHTML = '无';
             }else{
-                for(let i = 0;i<otherArr.length;i++){
+                for(let i = 0;i < otherArr.length; i++){
                 otherStr +=`
                 <li>${otherArr[i].title}</li>
                 `
@@ -50,17 +41,21 @@
             }
             //点击事件详情跳转
             let otherLi = document.querySelectorAll(".other_section > li");
-            for(let i = 0;i<otherArr.length;i++){
+            for(let i = 0;i < otherArr.length; i++){
                otherLi[i].onclick = function(){
                ls.setItem("articleId",otherArr[i].id);
                ls.setItem("author",otherArr[i].author.loginname);
            window.top.location.href = '../html/invitation.html'
-         
            }
-
        }
-          
-
         }
     })
+    document.addEventListener('DOMContentLoaded', function() {
+        let width = otherCon.clientWidth
+        let height = otherCon.clientHeight
+        window.parent.postMessage({
+            oiframeOtherHeight: height,
+            oiframeOtherWidth: width
+        }, '*')
+    }, false);
 </script>

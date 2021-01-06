@@ -82,7 +82,6 @@
         'type': 'get',
         success: function (data) {
             let authorJson = JSON.parse(data).data;
-            console.log(authorJson);
             principalUpStr = `
                 <li><img src="../img/peo2.png"><span>${authorJson.loginname}</span></li>
                 <li>${authorJson.score}积分</li>

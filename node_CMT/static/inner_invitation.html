@@ -28,19 +28,8 @@
     let oreplyHeader = document.querySelector(".reply_header");
     let oreplyList = document.querySelector(".reply_list");
     let oinvitationCon = document.querySelector(".invitation_con");
-    document.addEventListener('DOMContentLoaded', function () {
-        setTimeout(function () {
-            let width = oinvitationCon.clientWidth
-            let height = oinvitationCon.clientHeight
-            window.parent.postMessage({
-                oframeInviHeight: height,
-                oframeInviWidth: width
-            }, '*')
-        }, 1000)
-
-    }, false)
     let url = 'https://cnodejs.org/api/v1/topic/' + ls.getItem("articleId");
-    let str,invitationArr,replyNum,replyArr,replyStr;
+    let str, invitationArr, replyNum, replyArr, replyStr;
     ajax({
         'url': url,
         'type': 'get',
@@ -76,7 +65,6 @@
                 <span>回复</span>
         `
             oreplyHeader.innerHTML = replyNum;
-
             replyArr = invitationArr.replies;
             if (replyArr.length !== 0) {
                 for (let i = 0; i < replyArr.length; i++) {
@@ -119,13 +107,17 @@
                 oreplyCon.style.display = 'none';
 
             }
-
-
         }
-
-
-
-
-
     })
+
+    document.addEventListener('DOMContentLoaded', function () {
+        setTimeout(function () {
+            let width = oinvitationCon.clientWidth
+            let height = oinvitationCon.clientHeight
+            window.parent.postMessage({
+                oframeInviHeight: height,
+                oframeInviWidth: width
+            }, '*')
+        }, 1000)
+    }, false)
 </script>

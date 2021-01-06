@@ -24,16 +24,9 @@
     let topicArr = [];
     let topicStr = '';
     let allArr,notopicnum;
-    document.addEventListener('DOMContentLoaded', function () {
-        let width = otopicCon.clientWidth
-        let height = otopicCon.clientHeight
-        window.parent.postMessage({
-            oframeNotopicHeight: height,
-            oframeNotopicWidth: width
-        }, '*')
-    }, false);
-
-
+    /**
+     * 无人回复数据渲染
+     */
     ajax({
         'url': 'https://cnodejs.org/api/v1/topics',
         'type': 'get',
@@ -66,4 +59,13 @@
             }
         }
     })
+    document.addEventListener('DOMContentLoaded', function () {
+        let width = otopicCon.clientWidth
+        let height = otopicCon.clientHeight
+        window.parent.postMessage({
+            oframeNotopicHeight: height,
+            oframeNotopicWidth: width
+        }, '*')
+    }, false);
+
 </script>

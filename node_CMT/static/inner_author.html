@@ -16,14 +16,6 @@
 <script src="../js/common.js"></script>
 <script>
     let oauthorCon = document.querySelector(".author_con");
-    document.addEventListener('DOMContentLoaded', function () {
-        let width = oauthorCon.clientWidth
-        let height = oauthorCon.clientHeight
-        window.parent.postMessage({
-            oiframeAuthorHeight: 179,
-            oiframeAuthorWidth: width
-        }, '*')
-    }, false);
     let url = 'https://cnodejs.org/api/v1/user/' + ls.getItem("author");
     let autStr;
     
@@ -59,4 +51,13 @@
             }
         }
     })
+
+    document.addEventListener('DOMContentLoaded', function () {
+        let width = oauthorCon.clientWidth
+        let height = oauthorCon.clientHeight
+        window.parent.postMessage({
+            oiframeAuthorHeight: 179,
+            oiframeAuthorWidth: width
+        }, '*')
+    }, false);
 </script>

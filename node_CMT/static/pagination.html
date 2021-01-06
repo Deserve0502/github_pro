@@ -34,24 +34,6 @@
     let ocontain = document.querySelector('#contain');
     let oallContain = document.querySelector(".allContain");
     let opaginationLi = document.querySelectorAll(".contain_pagination > li");
-    window.addEventListener('message',function (e) {
-            console.log("heiheihei", e)
-            ocontain.style.height = e.data.ocontainHeight + PX;
-            ocontain.style.width = e.data.ocontainWidth + PX;
-        })
-    document.addEventListener('DOMContentLoaded', function () {
-        setTimeout(function () {
-            let width = oallContain.clientWidth
-            let height = oallContain.clientHeight
-            window.parent.postMessage({
-                iframePaginationHeight: 2230,
-                iframePaginationWidth: width
-            }, '*')
-        }, 2000)
-        
-
-    }, false)
-
     let ocontain_li = document.querySelectorAll(".contain_header > li ");
     for (let i = 0; i < ocontain_li.length; i++) {
         ocontain_li[i].onclick = function () {
@@ -80,5 +62,18 @@
         }
     }
     getPagination(ocontainPagination,opaginationLi,'page',21);
-   
+    window.addEventListener('message',function (e) {
+            ocontain.style.height = e.data.ocontainHeight + PX;
+            ocontain.style.width = e.data.ocontainWidth + PX;
+        })
+    document.addEventListener('DOMContentLoaded', function () {
+        setTimeout(function () {
+            let width = oallContain.clientWidth
+            let height = oallContain.clientHeight
+            window.parent.postMessage({
+                iframePaginationHeight: 2230,
+                iframePaginationWidth: width
+            }, '*')
+        }, 2000)
+    }, false)
 </script>

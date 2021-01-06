@@ -19,6 +19,8 @@
 <script src="../js/common.js"></script>
 <script>
     let ocontain_li = document.querySelectorAll(".contain_header > li ");
+    let ocontain_section = document.querySelector('.contain_section');
+    let ocontainCon = document.querySelector('.contain_con');
     let containArr,topPage;
     for (let i = 0; i < ocontain_li.length; i++) {
         ocontain_li[i].onclick = function () {
@@ -110,11 +112,9 @@
             }
         }
     })
-    let ocontain_section = document.querySelector('.contain_section');
-    var ocontainCon = document.querySelector('.contain_con');
+
     document.addEventListener('DOMContentLoaded', function () {
         setTimeout(function () {
-            console.log(ocontainCon.clientHeight)
             let width = ocontainCon.clientWidth;
             let height = ocontainCon.clientHeight;
             window.parent.postMessage({
@@ -122,6 +122,5 @@
                 ocontainWidth: width
             }, '*')
         }, 1500)
-
     }, false)
 </script>
