@@ -103,11 +103,11 @@
                 reTopicStr += `
                 <li>
                     <span><img src="../img/peo1.jpg"></span>
-                    <span><span class="reply_num">0</span>
+                    <span><span class="reply-num">0</span>
                         <span>/</span>
-                        <span class="click_num">33</span>
+                        <span class="click-num">33</span>
                     </span>
-                    <span class='con_title'>${reTopic[i].title}</span>
+                    <span class='con-title'>${reTopic[i].title}</span>
                     <div>
                         <img src="../img/peo2.png">
                         <span>${getLastTime(reTopic[i].last_reply_at)}</span>
@@ -117,7 +117,7 @@
             }
             reTopicStr = reTopicStr.substr(9);
             createUl.innerHTML = reTopicStr;
-            let createLi = document.querySelectorAll(".create_ul > li ");
+            let createLi = document.querySelectorAll(".create-ul > li ");
             //设置点击跳转事件
             for (let i = 0; i < createLi.length; i ++) {
                 createLi[i].onclick = function () {
@@ -138,11 +138,11 @@
                         <img src="../img/peo1.jpg">
                     </span>
                     <span>
-                        <span class="reply_num">0</span>
+                        <span class="reply-num">0</span>
                         <span>/</span>
-                        <span class="click_num">33</span>
+                        <span class="click-num">33</span>
                     </span>
-                    <span class='con_title'>${reReply[i].title}</span>
+                    <span class='con-title'>${reReply[i].title}</span>
                     <div>
                         <img src="../img/peo2.png">
                         <span>${getLastTime(reReply[i].last_reply_at)}</span>
@@ -153,7 +153,7 @@
             topicReplyStr = topicReplyStr.substr(9);
             replyUl.innerHTML = topicReplyStr;
             //设置点击跳转事件
-            let replyLi = document.querySelectorAll(".reply_ul > li ");
+            let replyLi = document.querySelectorAll(".reply-ul > li ");
             for (let i = 0; i < replyLi.length; i ++) {
                 replyLi[i].onclick = function () {
                     ls.setItem("articleId", reReply[i].id);
