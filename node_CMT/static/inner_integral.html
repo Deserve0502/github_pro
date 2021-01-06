@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="../css/inner.css">
 </head>
 <body>
-    <div class="list_container inter_con">
-        <div class="list_header">
+    <div class="list-container inter-con">
+        <div class="list-header">
             <span>积分榜</span>
             <a href="">TOP 100 >> </a>
         </div>
-        <ul class="list_section inter_ul"> 
+        <ul class="list-section inter-ul"> 
 
         </ul>
     </div>
@@ -21,7 +21,7 @@
 </html>
 <script src="../js/common.js"></script>
 <script>
-    let ointerCon = document.querySelector('.inter_con');
+    let ointerCon = document.querySelector('.inter-con');
     let integralArr = [
         { inter: 22510, name: 'i5ting' },
         { inter: 15840,name: 'alsotang' },
@@ -35,18 +35,18 @@
         { inter: 5375,name: 'magicdawn' },
 
     ];
-    let inter_ul = document.querySelector(".inter_ul");
+    let inter_ul = document.querySelector(".inter-ul");
     let str = '';
     for(let i = 0; i < integralArr.length; i++){
         str += `
-        <li class='inter_li'>
+        <li class='inter-li'>
            <span> ${integralArr[i].inter}</span>
-           <span class='inter_name'> ${integralArr[i].name}</span>
+           <span class='inter-name'> ${integralArr[i].name}</span>
             </li>
         `
     }
     inter_ul.innerHTML = str;
-    let interName = document.querySelectorAll(".inter_name");
+    let interName = document.querySelectorAll(".inter-name");
     for(let i = 0; i < interName.length; i++){
         interName[i].onclick = function(){
             ls.setItem("author",interName[i].innerText);

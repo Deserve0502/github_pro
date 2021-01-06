@@ -10,17 +10,17 @@
 </head>
 
 <body>
-    <div class="list_container topic_con">
-        <div class="list_header">无人回复的话题</div>
-        <ul class="list_section topic_ul"></ul>
+    <div class="list-container topic-con">
+        <div class="list-header">无人回复的话题</div>
+        <ul class="list-section topic-ul"></ul>
     </div>
 </body>
 
 </html>
 <script src="../js/common.js"></script>
 <script>
-    let otopicUl = document.querySelector(".topic_ul");
-    let otopicCon = document.querySelector(".topic_con")
+    let otopicUl = document.querySelector(".topic-ul");
+    let otopicCon = document.querySelector(".topic-con")
     let topicArr = [];
     let topicStr = '';
     let allArr,notopicnum;
@@ -43,11 +43,11 @@
             topicArr.length >= 5 ? notopicnum = 5 : notopicnum = topicArr.length;
             for (let i = 0; i < notopicnum; i++) {
                 topicStr += `
-            <li class='topic_li'>${topicArr[i].title}</li>
+            <li class='topic-li'>${topicArr[i].title}</li>
             `
             }
             otopicUl.innerHTML = topicStr;
-            let topicLi = document.querySelectorAll(".topic_ul > li")
+            let topicLi = document.querySelectorAll(".topic-ul > li")
             for (let i = 0; i < topicLi.length; i++) {
                 topicLi[i].onclick = function () {
                     ls.setItem("articleId", topicArr[i].id);

@@ -16,27 +16,27 @@
     <div class="layout-left">
         <div class="layout-left-left">
             <div class="pri">
-                <div class="list_header list_multHeader">
+                <div class="list-header list-multHeader">
                     <span>主页</span>
                 </div>
                 <ul class="principal-up"></ul>
             </div>
-            <div class="recent_create">
-                <div class="list_header list_multHeader">
+            <div class="recent-create">
+                <div class="list-header list-multHeader">
                     <span></span>
                     <span>最近创建的话题</span>
                 </div>
-                <ul class="create_ul contain_section"></ul>
+                <ul class="create-ul contain-section"></ul>
                 <div class="more">
                     <span> 查看更多 »</span>
                 </div>
             </div>
-            <div class="recent_reply">
-                <div class="list_header list_multHeader">
+            <div class="recent-reply">
+                <div class="list-header list-multHeader">
                     <span></span>
                     <span>最近回复的话题</span>
                 </div>
-                <ul class="reply_ul contain_section"></ul>
+                <ul class="reply-ul contain-section"></ul>
                 <div class="more">
                     <span> 查看更多 » </span>
                 </div>
@@ -48,7 +48,7 @@
             <iframe id="iframe_notopic" src="../static/inner_notopic.html" frameborder="0"></iframe>
         </div>
     </div>
-    <div class="return_con">
+    <div class="return-con">
         回到顶部
     </div>
     <script src="../js/gotop.js"></script>
@@ -65,12 +65,12 @@
     let oframeNotopic = document.querySelector('#iframe_notopic');
     let oiframeBottom = document.querySelector("#iframe_bottom");
     let principalUp = document.querySelector(".principal-up");
-    let recentCreate = document.querySelector(".recent_create");
-    let recentReply = document.querySelector(".recent_reply");
+    let recentCreate = document.querySelector(".recent-create");
+    let recentReply = document.querySelector(".recent-reply");
     let urlAuthorMess = 'https://cnodejs.org/api/v1/user/' + ls.getItem("author");
     let urlCollectMess = 'https://cnodejs.org/api/v1/topic_collect/' + ls.getItem("author");
-    let createUl = document.querySelector(".create_ul");
-    let replyUl = document.querySelector(".reply_ul");
+    let createUl = document.querySelector(".create-ul");
+    let replyUl = document.querySelector(".reply-ul");
     let reTopicStr,topicReplyStr,principalUpStr,numTopic,numReply;
 
 

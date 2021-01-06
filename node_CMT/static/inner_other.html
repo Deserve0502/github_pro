@@ -8,19 +8,19 @@
     <link rel="stylesheet" href="../css/inner.css">
 </head>
 <body>
-    <div class="list_container other_con">
-        <div class="list_header">
+    <div class="list-container other-con">
+        <div class="list-header">
             作者的其他话题
         </div>
-        <ul class="other_section"></ul>
+        <ul class="other-section"></ul>
     </div>
 </div>
 </body>
 </html>
 <script src="../js/common.js"></script>
 <script>
-    let otherCon = document.querySelector(".other_con");
-    let ootherSection = document.querySelector(".other_section");
+    let otherCon = document.querySelector(".other-con");
+    let ootherSection = document.querySelector(".other-section");
     let url = 'https://cnodejs.org/api/v1/user/' + ls.getItem("author");
     let otherStr;
     ajax({
@@ -40,7 +40,7 @@
             ootherSection.innerHTML = otherStr;
             }
             //点击事件详情跳转
-            let otherLi = document.querySelectorAll(".other_section > li");
+            let otherLi = document.querySelectorAll(".other-section > li");
             for(let i = 0;i < otherArr.length; i++){
                otherLi[i].onclick = function(){
                ls.setItem("articleId",otherArr[i].id);

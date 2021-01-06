@@ -12,11 +12,11 @@
 </head>
 
 <body>
-    <div class="invitation_con">
-        <div class="invi_con"></div>
-        <div class="reply_con">
-            <div class="list_header reply_header"></div>
-            <ul class="reply_list"></ul>
+    <div class="invitation-con">
+        <div class="invi-con"></div>
+        <div class="reply-con">
+            <div class="list-header reply-header"></div>
+            <ul class="reply-list"></ul>
         </div>
     </div>
 </body>
@@ -24,10 +24,10 @@
 </html>
 <script src="../js/common.js"></script>
 <script>
-    let oinviCon = document.querySelector(".invi_con");
-    let oreplyHeader = document.querySelector(".reply_header");
-    let oreplyList = document.querySelector(".reply_list");
-    let oinvitationCon = document.querySelector(".invitation_con");
+    let oinviCon = document.querySelector(".invi-con");
+    let oreplyHeader = document.querySelector(".reply-header");
+    let oreplyList = document.querySelector(".reply-list");
+    let oinvitationCon = document.querySelector(".invitation-con");
     let url = 'https://cnodejs.org/api/v1/topic/' + ls.getItem("articleId");
     let str, invitationArr, replyNum, replyArr, replyStr;
     ajax({
@@ -37,8 +37,8 @@
             let invitationArr = JSON.parse(data).data;
             //详情
             str = `
-        <div class="invi_up"><span class="classify">置顶</span>
-            <span class="invi_title">${invitationArr.title}</span>
+        <div class="invi-up"><span class="classify">置顶</span>
+            <span class="invi-title">${invitationArr.title}</span>
             <li >
                 <span>•</span>
                 <span>发布于</span>
@@ -51,7 +51,7 @@
                 <span>次浏览</span>
             </li>
         </div>
-        <div class="invi_down">
+        <div class="invi-down">
             <p>${invitationArr.content}</p> 
         </div>
             
@@ -72,15 +72,15 @@
                     <li>
                         <div>
                             <img src="../img/peo1.jpg">
-                            <span class="reply_name">${replyArr[i].author.loginname}</span>
+                            <span class="reply-name">${replyArr[i].author.loginname}</span>
                             <span>${i + 1}</span>
                             <span>楼</span>
                             <span>•</span>
                             <span>${getLastTime(replyArr[i].create_at)}</span>
-                            <span class='invi_author'>${replyArr[i].author.loginname===ls.getItem("author")?'作者':''}</span>
+                            <span class='invi-author'>${replyArr[i].author.loginname===ls.getItem("author")?'作者':''}</span>
                             <span class='thumb iconfont'>&#xe603; <span class='thumb-num'>${replyArr[i].ups.length}</span></span>
                         </div>
-                        <p class='reply_content'>${replyArr[i].content}</p>
+                        <p class='reply-content'>${replyArr[i].content}</p>
                     </li>
             
             `
@@ -88,7 +88,7 @@
                 replyStr = replyStr.substr(9);
                 oreplyList.innerHTML = replyStr;
                 //点赞
-                let inviAuthor = document.querySelectorAll(".invi_author");
+                let inviAuthor = document.querySelectorAll(".invi-author");
                 let othumb = document.querySelectorAll(".thumb");
                 let othumbNum = document.querySelectorAll(".thumb-num");
                 for (let i = 0; i < replyArr.length; i++) {
@@ -103,7 +103,7 @@
                     }
                 }
             } else {
-                let oreplyCon = document.querySelector(".reply_con");
+                let oreplyCon = document.querySelector(".reply-con");
                 oreplyCon.style.display = 'none';
 
             }

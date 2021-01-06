@@ -115,7 +115,7 @@ function getPagination(ul,li,lsPage,endPage){
         }
         ul.innerHTML = str;
         str = '';
-        li = document.querySelectorAll(".contain_pagination > li");
+        li = document.querySelectorAll(".contain-pagination > li");
         liclick();
     }
     // 重建数组顺序

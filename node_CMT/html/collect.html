@@ -14,14 +14,14 @@
     <iframe id="iframe_header" src="../static/header.html" frameborder="0"></iframe>
     <div class="layout-left">
         <div class="layout-left-left">
-            <div class="list_header list_multHeader">
+            <div class="list-header list-multHeader">
                 <span>
                     <span class="authorName"></span>
                     收藏的话题
                 </span>
             </div>
-            <div class="contain_con coll_con">
-                <ul class=" contain_section"></ul>
+            <div class="contain-con coll-con">
+                <ul class=" contain-section"></ul>
             </div>
         </div>
         <div class="layout-right">
@@ -30,7 +30,7 @@
             <iframe id="iframe_ewm" src="../static/inner_ewm.html" frameborder="0"></iframe>
         </div>
     </div>
-    <div class="return_con">
+    <div class="return-con">
         回到顶部
     </div>
     <script src="../js/gotop.js"></script>
@@ -46,7 +46,7 @@
     let oiframeEwm = document.querySelector("#iframe_ewm");
     let oiframeBottom = document.querySelector("#iframe_bottom");
     let oiframeReturn = document.querySelector("#iframe_return");
-    let ocollectSection = document.querySelector(".contain_section");
+    let ocollectSection = document.querySelector(".contain-section");
     let oauthorName = document.querySelector(".authorName");
     oauthorName.innerHTML = ls.getItem("author");
     window.addEventListener(MESSAGE, function (e) {
@@ -93,13 +93,13 @@
                     <img src="../img/peo1.jpg">
                 </span>
                 <span>
-                    <span class="reply_num">${containArr[i].reply_count}</span>
+                    <span class="reply-num">${containArr[i].reply_count}</span>
                     <span>/</span>
-                    <span class="click_num">${containArr[i].visit_count}</span>
+                    <span class="click-num">${containArr[i].visit_count}</span>
                 </span>
                 <span class="classify">${containArr[i].tab}</span>
                 <i style="display:none" class="isTop">${containArr[i].top}</i>
-                <span class='con_title'>${containArr[i].title}</span>
+                <span class='con-title'>${containArr[i].title}</span>
                 <div>
                     <img src="../img/peo2.png">
                 <span>
@@ -111,7 +111,7 @@
             }
             ocollectSection.innerHTML = ocontain_section_li;
             //点击跳转详情事件
-            let ocontainList = document.querySelectorAll(".con_title");
+            let ocontainList = document.querySelectorAll(".con-title");
             for (let i = 0; i < ocontainList.length; i++) {
                 ocontainList[i].onclick = function () {
                     ls.setItem("articleId", containArr[i].id);
@@ -129,7 +129,7 @@
                 }
             }
             //根据tab渲染标签
-            let oconClassify = document.querySelectorAll('.contain_section > li > span:nth-of-type(3)');
+            let oconClassify = document.querySelectorAll('.contain-section > li > span:nth-of-type(3)');
             let oisTop = document.querySelectorAll(".isTop");
             for (let i = 0; i < oisTop.length; i++) {
                 if (oisTop[i].innerHTML === 'false') {

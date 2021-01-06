@@ -12,7 +12,7 @@
 
 <body>
     <div class="allContain">
-        <ul class="contain_header">
+        <ul class="contain-header">
             <li>全部</li>
             <li>精华</li>
             <li>分享</li>
@@ -21,7 +21,7 @@
             <li>客户端测试</li>
         </ul>
         <iframe id="contain" src="../static/contain.html" frameborder="0"></iframe>
-        <ul class="contain_pagination">
+        <ul class="contain-pagination">
         </ul>
     </div>
 
@@ -30,11 +30,11 @@
 </html>
 <script src="../js/common.js"></script>
 <script>
-    let ocontainPagination = document.querySelector(".contain_pagination");
+    let ocontainPagination = document.querySelector(".contain-pagination");
     let ocontain = document.querySelector('#contain');
     let oallContain = document.querySelector(".allContain");
-    let opaginationLi = document.querySelectorAll(".contain_pagination > li");
-    let ocontain_li = document.querySelectorAll(".contain_header > li ");
+    let opaginationLi = document.querySelectorAll(".contain-pagination > li");
+    let ocontain_li = document.querySelectorAll(".contain-header > li ");
     for (let i = 0; i < ocontain_li.length; i++) {
         ocontain_li[i].onclick = function () {
             if (ocontain_li[i].innerHTML === '精华') {

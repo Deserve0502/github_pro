@@ -10,17 +10,17 @@
 </head>
 
 <body>
-    <div class="contain_con">
-        <ul class="contain_section"></ul>
+    <div class="contain-con">
+        <ul class="contain-section"></ul>
     </div>
 </body>
 
 </html>
 <script src="../js/common.js"></script>
 <script>
-    let ocontain_li = document.querySelectorAll(".contain_header > li ");
-    let ocontain_section = document.querySelector('.contain_section');
-    let ocontainCon = document.querySelector('.contain_con');
+    let ocontain_li = document.querySelectorAll(".contain-header > li ");
+    let ocontain_section = document.querySelector('.contain-section');
+    let ocontainCon = document.querySelector('.contain-con');
     let containArr,topPage;
     for (let i = 0; i < ocontain_li.length; i++) {
         ocontain_li[i].onclick = function () {
@@ -51,13 +51,13 @@
                         <img src="../img/peo1.jpg">
                     </span>
                     <span>
-                        <span class="reply_num">${containArr[i].reply_count}</span>
+                        <span class="reply-num">${containArr[i].reply_count}</span>
                         <span>/</span>
-                        <span class="click_num">${containArr[i].visit_count}</span>
+                        <span class="click-num">${containArr[i].visit_count}</span>
                     </span>
                     <span class="classify">${containArr[i].tab}</span>
                     <i style="display:none" class="isTop">${containArr[i].top}</i>
-                    <span class='con_title'>${containArr[i].title}</span>
+                    <span class='con-title'>${containArr[i].title}</span>
                     <div>
                         <img src="../img/peo2.png">
                     <span>
@@ -69,7 +69,7 @@
             }
             ocontain_section.innerHTML = ocontain_section_li;
             //点击标题事件跳转详情页
-            let ocontainList = document.querySelectorAll(".con_title");
+            let ocontainList = document.querySelectorAll(".con-title");
             for (let i = 0; i < ocontainList.length; i++) {
                 ocontainList[i].onclick = function () {
                     ls.setItem("articleId", containArr[i].id);
@@ -87,7 +87,7 @@
                 }
             }
             //根据接口分类渲染标签
-            let oconClassify = document.querySelectorAll('.contain_section > li > span:nth-of-type(3)');
+            let oconClassify = document.querySelectorAll('.contain-section > li > span:nth-of-type(3)');
             let oisTop = document.querySelectorAll(".isTop");
             for (let i = 0; i < oisTop.length; i++) {
                 if (oisTop[i].innerHTML === 'false') {

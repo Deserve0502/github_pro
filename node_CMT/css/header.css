@@ -3,7 +3,7 @@ header {
     height: 50px;
     background-color: #444;
 }
-.header_center{
+.header-center{
     height: 100%;
     width: 90%;
     padding: 5px;
@@ -13,21 +13,21 @@ header {
     align-items: center;
     position: relative;
 }
-.header_center > a {
+.header-center > a {
     margin-right: 20px;
 }
-.header_center img {
+.header-center img {
     width: 120px;
     cursor: pointer;
 }
-.header_search{
+.header-search{
     width: 233px;
     height: 26px;
     background-color: #888;
     border-radius: 15px;
     transition: all 0.3s;
 }
-.header_search > span {
+.header-search > span {
     width: 27px;
     height: 100%;
     text-align: center;
@@ -35,7 +35,7 @@ header {
     color: #666;
     margin-left: 1px;
 }
-.header_search > input {
+.header-search > input {
     padding: 0;
     width: 200px;
     height: 100%;
@@ -45,7 +45,7 @@ header {
     color: #666;
     background-color: #888;
 }
-.header_nav {
+.header-nav {
     height: 100%;
     width: 357px;
     position: absolute;
@@ -53,7 +53,7 @@ header {
     display: flex;
     align-items: center;
 }
-.header_nav a {
+.header-nav a {
     padding: 10px 15px;
     box-sizing: border-box;
     font-size: 13px;

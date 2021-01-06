@@ -9,13 +9,13 @@
 </head>
 
 <body>
-    <div class="list_container author_con"></div>
+    <div class="list-container author-con"></div>
 </body>
 
 </html>
 <script src="../js/common.js"></script>
 <script>
-    let oauthorCon = document.querySelector(".author_con");
+    let oauthorCon = document.querySelector(".author-con");
     let url = 'https://cnodejs.org/api/v1/user/' + ls.getItem("author");
     let autStr;
     
@@ -28,8 +28,8 @@
         success: function (data) {
             let authorJson = JSON.parse(data).data;
             autStr = `
-            <div class="list_header">作者</div>
-            <div class="author_section">
+            <div class="list-header">作者</div>
+            <div class="author-section">
             <div>
                 <img src="../img/peo1.jpg">
                 <span class='goPrin'>${authorJson.loginname}</span>
