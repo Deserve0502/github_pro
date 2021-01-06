@@ -11,9 +11,7 @@
 
 <body>
     <div class="contain_con">
-        <ul class="contain_section">
-
-        </ul>
+        <ul class="contain_section"></ul>
     </div>
 </body>
 
@@ -21,9 +19,7 @@
 <script src="../js/common.js"></script>
 <script>
     let ocontain_li = document.querySelectorAll(".contain_header > li ");
-
-    let containArr;
-    let topPage;
+    let containArr,topPage;
     for (let i = 0; i < ocontain_li.length; i++) {
         ocontain_li[i].onclick = function () {
             ocontain_li[0].style.backgroundColor = '#f6f6f6';
@@ -38,14 +34,13 @@
     ajax({
         'url': 'https://cnodejs.org/api/v1/topics',
         'type': 'get',
-        data:{
+        data: {
             page: (ls.getItem("page") !== 1 ? ls.getItem("page") : 1),
             tab: (ls.getItem("tab") !== 'all' ? ls.getItem("tab") : 'all')
         },
         success: function (data) {
             let dataJson = JSON.parse(data);
             containArr = dataJson.data;
-            console.log(containArr)
             let ocontain_section_li = '';
             for (let i = 0; i < containArr.length; i++) {
                 ocontain_section_li += `
@@ -67,30 +62,29 @@
                         ${getLastTime(containArr[i].last_reply_at)}
                     </span>
                 </div>
-                </li>
+            </li>
             `
             }
             ocontain_section.innerHTML = ocontain_section_li;
-
+            //点击标题事件跳转详情页
             let ocontainList = document.querySelectorAll(".con_title");
             for (let i = 0; i < ocontainList.length; i++) {
                 ocontainList[i].onclick = function () {
                     ls.setItem("articleId", containArr[i].id);
                     ls.setItem("author", containArr[i].author.loginname);
-                    console.log(ls.getItem("articleId"));
                     window.top.location.href = '../html/invitation.html'
-
                 }
             }
+            //点击头像跳转个人中心
             let ogoPrin = document.querySelectorAll(".goPrin");
-            for(let i = 0; i < ogoPrin.length; i++){
-                ogoPrin[i].onclick = function(){
+            for (let i = 0; i < ogoPrin.length; i++) {
+                ogoPrin[i].onclick = function () {
                     ls.setItem("articleId", containArr[i].id);
                     ls.setItem("author", containArr[i].author.loginname);
                     window.top.location.href = '../html/principal.html'
                 }
             }
-
+            //根据接口分类渲染标签
             let oconClassify = document.querySelectorAll('.contain_section > li > span:nth-of-type(3)');
             let oisTop = document.querySelectorAll(".isTop");
             for (let i = 0; i < oisTop.length; i++) {
@@ -100,9 +94,9 @@
                     } else {
                         if (oconClassify[i].innerHTML === 'share') {
                             oconClassify[i].innerHTML = '分享';
-                        } else if (oconClassify[i].innerHTML === 'dev')  {
+                        } else if (oconClassify[i].innerHTML === 'dev') {
                             oconClassify[i].innerHTML = '测试';
-                        } else if (oconClassify[i].innerHTML === 'job'){
+                        } else if (oconClassify[i].innerHTML === 'job') {
                             oconClassify[i].innerHTML = '招聘';
                         } else {
                             oconClassify[i].innerHTML = '问答';
@@ -118,17 +112,16 @@
     })
     let ocontain_section = document.querySelector('.contain_section');
     var ocontainCon = document.querySelector('.contain_con');
-            document.addEventListener('DOMContentLoaded', function () {
-                setTimeout(function(){
-                    console.log(ocontainCon.clientHeight)
-                    let width = ocontainCon.clientWidth;
-                    let height = ocontainCon.clientHeight;
-                    window.parent.postMessage({
-                        ocontainHeight: 2039,
-                        ocontainWidth: width
-                    }, '*')
-                },1500)
+    document.addEventListener('DOMContentLoaded', function () {
+        setTimeout(function () {
+            console.log(ocontainCon.clientHeight)
+            let width = ocontainCon.clientWidth;
+            let height = ocontainCon.clientHeight;
+            window.parent.postMessage({
+                ocontainHeight: 2039,
+                ocontainWidth: width
+            }, '*')
+        }, 1500)
 
-            }, false)
-
+    }, false)
 </script>

@@ -46,34 +46,36 @@
     let oiframeEwm = document.querySelector("#iframe_ewm");
     let oiframeBottom = document.querySelector("#iframe_bottom");
     let oiframeReturn = document.querySelector("#iframe_return");
-    window.addEventListener('message', function (e) {
+    let ocollectSection = document.querySelector(".contain_section");
+    let oauthorName = document.querySelector(".authorName");
+    oauthorName.innerHTML = ls.getItem("author");
+    window.addEventListener(MESSAGE, function (e) {
         oframeHeader.style.height = e.data.oframeHeaderHeight + PX;
         oframeHeader.style.width = e.data.oframeHeaderWidth + PX;
     })
 
-    window.addEventListener('message', function (e) {
+    window.addEventListener(MESSAGE, function (e) {
         oiframeAuthor.style.height = e.data.oiframeAuthorHeight + PX;
         oiframeAuthor.style.width = e.data.oiframeAuthorWidth + PX;
     })
 
-    window.addEventListener('message', function (e) {
+    window.addEventListener(MESSAGE, function (e) {
         oiframeComm.style.height = e.data.oiframeCommHeight + PX;
         oiframeComm.style.width = e.data.oiframeCommWidth + PX;
     })
-    window.addEventListener('message', function (e) {
+    window.addEventListener(MESSAGE, function (e) {
         oiframeEwm.style.height = e.data.oiframeEwmHeight + PX;
         oiframeEwm.style.width = e.data.oiframeEwmWidth + PX;
     })
 
-    window.addEventListener('message', function (e) {
+    window.addEventListener(MESSAGE, function (e) {
         oiframeBottom.style.height = e.data.oiframeBottomHeight + PX;
         oiframeBottom.style.width = e.data.oiframeBottomWidth + PX;
     })
 
 
-    let ocollectSection = document.querySelector(".contain_section");
-    let oauthorName = document.querySelector(".authorName");
-    oauthorName.innerHTML = ls.getItem("author");
+   
+    
     /**
      * 渲染收藏列表
      */
@@ -115,7 +117,6 @@
                     ls.setItem("articleId", containArr[i].id);
                     ls.setItem("author", containArr[i].author.loginname);
                     window.top.location.href = '../html/invitation.html'
-
                 }
             }
             //点击跳转个人中心
@@ -127,7 +128,7 @@
                     window.top.location.href = '../html/principal.html'
                 }
             }
-
+            //根据tab渲染标签
             let oconClassify = document.querySelectorAll('.contain_section > li > span:nth-of-type(3)');
             let oisTop = document.querySelectorAll(".isTop");
             for (let i = 0; i < oisTop.length; i++) {

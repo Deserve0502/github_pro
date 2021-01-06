@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,16 +9,13 @@
 </head>
 
 <body>
-    <div class="list_container author_con">
-
-    </div>
+    <div class="list_container author_con"></div>
 </body>
 
 </html>
 <script src="../js/common.js"></script>
 <script>
     let oauthorCon = document.querySelector(".author_con");
-
     document.addEventListener('DOMContentLoaded', function () {
         let width = oauthorCon.clientWidth
         let height = oauthorCon.clientHeight
@@ -30,28 +26,29 @@
     }, false);
     let url = 'https://cnodejs.org/api/v1/user/' + ls.getItem("author");
     let autStr;
+    
+    /**
+     * 作者信息渲染
+     */ 
     ajax({
         'url': url,
         'type': 'get',
         success: function (data) {
             let authorJson = JSON.parse(data).data;
-            console.log(authorJson);
             autStr = `
-            <div class="list_header">
-         作者
-        </div>
-        <div class="author_section">
-       <div>
-           <img src="../img/peo1.jpg">
-           <span class='goPrin'>   ${authorJson.loginname}</span>
-       </div>
-       <p>
-           积分：<span>${authorJson.score}</span>
-       </p>
-       <p>
-           "好难不会做"
-       </p>
-    </div>
+            <div class="list_header">作者</div>
+            <div class="author_section">
+            <div>
+                <img src="../img/peo1.jpg">
+                <span class='goPrin'>${authorJson.loginname}</span>
+            </div>
+            <p>
+                积分：<span>${authorJson.score}</span>
+            </p>
+            <p>
+                "好难不会做"
+            </p>
+            </div>
             
             `
             oauthorCon.innerHTML = autStr;

@@ -26,11 +26,11 @@
 <script>
     let oframeHeader = document.querySelector('#iframe_header');
     let oiframeBottom = document.querySelector("#iframe_bottom");
-    window.addEventListener('message', function (e) {
+    window.addEventListener(MESSAGE, function (e) {
         oframeHeader.style.height = e.data.oframeHeaderHeight + PX;
         oframeHeader.style.width = e.data.oframeHeaderWidth + PX;
     })
-    window.addEventListener('message',function (e) {
+    window.addEventListener(MESSAGE, function (e) {
         oiframeBottom.style.height = e.data.oiframeBottomHeight + PX;
         oiframeBottom.style.width = e.data.oiframeBottomWidth + PX;
     })

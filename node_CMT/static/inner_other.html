@@ -12,9 +12,7 @@
         <div class="list_header">
             作者的其他话题
         </div>
-        <ul class="other_section">
-            
-        </ul>
+        <ul class="other_section"></ul>
     </div>
 </div>
 </body>
@@ -39,25 +37,21 @@
         'type': 'get',
         success: function (data) {
             let otherArr = JSON.parse(data).data.recent_topics;
-            // console.log(otherArr[0].title);
             if(otherArr.length===0){
                 ootherSection.innerHTML = '无';
             }else{
                 for(let i = 0;i<otherArr.length;i++){
                 otherStr +=`
                 <li>${otherArr[i].title}</li>
-                
                 `
             }
             otherStr = otherStr.substr(9);
-
-            
             ootherSection.innerHTML = otherStr;
             }
-let otherLi = document.querySelectorAll(".other_section > li");
+            //点击事件详情跳转
+            let otherLi = document.querySelectorAll(".other_section > li");
             for(let i = 0;i<otherArr.length;i++){
-           
-                otherLi[i].onclick = function(){
+               otherLi[i].onclick = function(){
                ls.setItem("articleId",otherArr[i].id);
                ls.setItem("author",otherArr[i].author.loginname);
            window.top.location.href = '../html/invitation.html'

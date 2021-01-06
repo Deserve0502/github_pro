@@ -31,14 +31,13 @@
 <script src="../js/common.js"></script>
 <script>
     let ocontainPagination = document.querySelector(".contain_pagination");
-    let ocontain = document.getElementById('contain');
+    let ocontain = document.querySelector('#contain');
     let oallContain = document.querySelector(".allContain");
-    
-    window.addEventListener('message',
-        function (e) {
+    let opaginationLi = document.querySelectorAll(".contain_pagination > li");
+    window.addEventListener('message',function (e) {
             console.log("heiheihei", e)
-            ocontain.style.height = e.data.ocontainHeight + 'px'
-            ocontain.style.width = e.data.ocontainWidth + 'px'
+            ocontain.style.height = e.data.ocontainHeight + PX;
+            ocontain.style.width = e.data.ocontainWidth + PX;
         })
     document.addEventListener('DOMContentLoaded', function () {
         setTimeout(function () {
@@ -46,7 +45,6 @@
             let height = oallContain.clientHeight
             window.parent.postMessage({
                 iframePaginationHeight: 2230,
-                // iframePaginationHeight: height,
                 iframePaginationWidth: width
             }, '*')
         }, 2000)
@@ -70,7 +68,6 @@
             } else {
                 ls.setItem("tab", "all");
             }
-
             partRefresh();
             ocontain_li[0].style.backgroundColor = '#f6f6f6';
             for (let j = 0; j < ocontain_li.length; j++) {
@@ -82,9 +79,6 @@
             }
         }
     }
-    let opaginationLi = document.querySelectorAll(".contain_pagination > li");
-    let ss = sessionStorage;
-    
     getPagination(ocontainPagination,opaginationLi,'page',21);
    
 </script>

@@ -41,45 +41,36 @@
     let oiframeComm = document.querySelector("#iframe_comm");
     let oiframeEwm = document.querySelector("#iframe_ewm");
     let oiframeBottom = document.querySelector("#iframe_bottom");
-    window.addEventListener('message',
-        function (e) {
+    window.addEventListener(MESSAGE, function (e) {
             oframeHeader.style.height = e.data.oframeHeaderHeight + PX;
             oframeHeader.style.width = e.data.oframeHeaderWidth + PX;
         })
-    window.addEventListener('message',
-        function (e) {
-            
+    window.addEventListener(MESSAGE, function (e) {
             iframePagination.style.height = e.data.iframePaginationHeight + PX;
             iframePagination.style.width = '100%';
         })
-    window.addEventListener('message',
-        function (e) {
+    window.addEventListener(MESSAGE, function (e) {
             oframeLog.style.height = e.data.oframeLogHeight + PX;
             oframeLog.style.width = e.data.oframeLogWidth + PX;
         })
-    window.addEventListener('message',
-        function (e) {
+    window.addEventListener(MESSAGE, function (e) {
             oframeNotopic.style.height = e.data.oframeNotopicHeight + PX;
             oframeNotopic.style.width = e.data.oframeNotopicWidth + PX;
         })
-    window.addEventListener('message',
-        function (e) {
+    window.addEventListener(MESSAGE, function (e) {
             oframeIntegral.style.height = e.data.oframeIntegralHeight + PX;
             oframeIntegral.style.width = e.data.oframeIntegralWidth + PX;
         })
-    window.addEventListener('message',
-        function (e) {
+    window.addEventListener(MESSAGE, function (e) {
             oiframeComm.style.height = e.data.oiframeCommHeight + PX;
             oiframeComm.style.width = e.data.oiframeCommWidth + PX;
         })
-    window.addEventListener('message',
-        function (e) {
+    window.addEventListener(MESSAGE, function (e) {
             oiframeEwm.style.height = e.data.oiframeEwmHeight + PX;
             oiframeEwm.style.width = e.data.oiframeEwmWidth + PX;
         })
 
-    window.addEventListener('message',
-        function (e) {
+    window.addEventListener(MESSAGE, function (e) {
             oiframeBottom.style.height = e.data.oiframeBottomHeight + PX;
             oiframeBottom.style.width = e.data.oiframeBottomWidth + PX;
         })

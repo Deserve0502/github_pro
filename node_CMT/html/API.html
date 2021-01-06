@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="icon" type="image/x-icon" href="../img/cnode_icon_32.png" />
 </head>
+
 <body>
     <iframe id="iframe_header" src="../static/header.html" frameborder="0" margin="0px"></iframe>
     <div class="layout-left ">
@@ -17,102 +19,105 @@
                     <span>主页</span>
                     <span>/</span>
                     <span>API</span>
-            </div>
-            <ul class="API-ul">
-                <li>
-                    以下 api 路径均以 
-                   <a href=""> https://cnodejs.org/api/v1</a> 为前缀
-                </li>
-                <h3 class="list_title">主题</h3>
-                <li class="list_smallTitle">get /topics 主题首页</li>
-                <li>
-                    接收 get 参数
-                </li>
-                <ul>
-                    <li>page 
-                       <span class="clas">Number</span>  页数</li>
-                    <li>tab String 主题分类。目前有 
-                       <span class="clas">
-                        ask
-                       </span>  
-                       <span class="clas">
-                        share
-                           </span>
-                           <span class="clas">
-                            job
-                           </span>
-                           <span class="clas">good</span>
-                      </li>
-                    <li>limit 
-                        <span class="clas">
-                            Number 
-                            </span>每一页的主题数量</li>
-                    <li>mdrender 
-                        
-                        <span class="clas">String</span> 当为 false 时，不渲染。默认为 true，渲染出现的所有 markdown 格式文本。</li>
-                </ul>
-                <li>
-                    示例：
-                    <a href="https://cnodejs.org/api/v1/topics">/api/v1/topics</a>
-                </li>
-                <li class="list_smallTitle">
-                    get /topic/:id 主题详情
-                </li>
-                <li>
-                    接收 get 参数
-                </li>
-                <ul>
+                </div>
+                <ul class="API-ul">
                     <li>
-                        mdrender String 当为 false 时，不渲染。默认为 true，渲染出现的所有 markdown 格式文本。
-                       
+                        以下 api 路径均以
+                        <a href="https://cnodejs.org/api/v1">
+                            https://cnodejs.org/api/v1
+                        </a> 为前缀
                     </li>
-                    <li> accesstoken String 当需要知道一个主题是否被特定用户收藏以及对应评论是否被特定用户点赞时，才需要带此参数。会影响返回值中的 is_collect 以及 replies 列表中的 is_uped 值。</li>
-                   
+                    <h3 class="list_title">主题</h3>
+                    <li class="list_smallTitle">get /topics 主题首页</li>
+                    <li>
+                        接收 get 参数
+                    </li>
+                    <ul>
+                        <li>page
+                            <span class="clas">Number</span> 页数</li>
+                        <li>tab String 主题分类。目前有
+                            <span class="clas">
+                                ask
+                            </span>
+                            <span class="clas">
+                                share
+                            </span>
+                            <span class="clas">
+                                job
+                            </span>
+                            <span class="clas">good</span>
+                        </li>
+                        <li>limit
+                            <span class="clas">
+                                Number
+                            </span>每一页的主题数量</li>
+                        <li>mdrender
+
+                            <span class="clas">String</span> 当为 false 时，不渲染。默认为 true，渲染出现的所有 markdown 格式文本。</li>
+                    </ul>
+                    <li>
+                        示例：
+                        <a href="https://cnodejs.org/api/v1/topics">/api/v1/topics</a>
+                    </li>
+                    <li class="list_smallTitle">
+                        get /topic/:id 主题详情
+                    </li>
+                    <li>
+                        接收 get 参数
+                    </li>
+                    <ul>
+                        <li>
+                            mdrender String 当为 false 时，不渲染。默认为 true，渲染出现的所有 markdown 格式文本。
+
+                        </li>
+                        <li> accesstoken String 当需要知道一个主题是否被特定用户收藏以及对应评论是否被特定用户点赞时，才需要带此参数。会影响返回值中的 is_collect 以及
+                            replies 列表中的 is_uped 值。</li>
+
+                    </ul>
+                    <li>
+                        示例：
+                        <a
+                            href="https://cnodejs.org/api/v1/topic/5433d5e4e737cbe96dcef312">api/v1/topic/5433d5e4e737cbe96dcef312
+                        </a>/
+                    </li>
                 </ul>
-                <li>
-                    示例：
-                    <a href="https://cnodejs.org/api/v1/topic/5433d5e4e737cbe96dcef312">api/v1/topic/5433d5e4e737cbe96dcef312</a>/
-                </li>
-            </ul>
+            </div>
+        </div>
+        <div class="layout-right">
+            <iframe id="iframe_log" src="../static/inner_log.html" frameborder="0"></iframe>
+            <iframe id="iframe_comm" src="../static/inner_comm.html" frameborder="0"></iframe>
+            <iframe id="iframe_ewm" src="../static/inner_ewm.html" frameborder="0"></iframe>
         </div>
     </div>
-            <div style="width: 22%;float: right;" class="layout_right">
-                <iframe id="iframe_log" src="../static/inner_log.html" frameborder="0"></iframe>
-                <iframe id="iframe_comm" src="../static/inner_comm.html" frameborder="0"></iframe>
-                <iframe id="iframe_ewm"src="../static/inner_ewm.html" frameborder="0"></iframe>
-            </div>
-        </div>
-            <iframe id="iframe_bottom" src="../static/bottom.html" frameborder="0"></iframe>
+    <iframe id="iframe_bottom" src="../static/bottom.html" frameborder="0"></iframe>
 </body>
+
 </html>
+<script src="../js/common.js"></script>
 <script>
-     let oframeHeader = document.getElementById('iframe_header');
-     let oframeLog = document.getElementById('iframe_log');
-     let oiframeComm = document.getElementById("iframe_comm");
-    let oiframeEwm = document.getElementById("iframe_ewm");
-    let oiframeBottom = document.getElementById("iframe_bottom");
-    window.addEventListener('message', function (e) {
-        oframeHeader.style.height = e.data.oframeHeaderHeight + 'px'
-        oframeHeader.style.width = e.data.oframeHeaderWidth + 'px'
+    let oframeHeader = document.querySelector('#iframe_header');
+    let oframeLog = document.querySelector('#iframe_log');
+    let oiframeComm = document.querySelector("#iframe_comm");
+    let oiframeEwm = document.querySelector("#iframe_ewm");
+    let oiframeBottom = document.querySelector("#iframe_bottom");
+    window.addEventListener(MESSAGE, function (e) {
+        oframeHeader.style.height = e.data.oframeHeaderHeight + PX;
+        oframeHeader.style.width = e.data.oframeHeaderWidth + PX;
     })
-    window.addEventListener('message',
-        function (e) {
-            oframeLog.style.height = e.data.oframeLogHeight + 'px'
-            oframeLog.style.width = e.data.oframeLogWidth + 'px'
+    window.addEventListener(MESSAGE, function (e) {
+            oframeLog.style.height = e.data.oframeLogHeight + PX;
+            oframeLog.style.width = e.data.oframeLogWidth + PX;
         })
-        window.addEventListener('message',
-    function (e) {
-        oiframeComm.style.height = e.data.oiframeCommHeight + 'px'
-        oiframeComm.style.width = e.data.oiframeCommWidth + 'px'
-    })
-    window.addEventListener('message',
-    function (e) {
-        oiframeEwm.style.height = e.data.oiframeEwmHeight + 'px'
-        oiframeEwm.style.width = e.data.oiframeEwmWidth + 'px'
-    })
-    window.addEventListener('message',
-    function (e) {
-        oiframeBottom.style.height = e.data.oiframeBottomHeight + 'px'
-        oiframeBottom.style.width = e.data.oiframeBottomWidth + 'px'
-    })
+    window.addEventListener(MESSAGE, function (e) {
+            oiframeComm.style.height = e.data.oiframeCommHeight + PX;
+            oiframeComm.style.width = e.data.oiframeCommWidth + PX;
+        })
+    window.addEventListener(MESSAGE, function (e) {
+            oiframeEwm.style.height = e.data.oiframeEwmHeight + PX;
+            oiframeEwm.style.width = e.data.oiframeEwmWidth + PX;
+        })
+    window.addEventListener(MESSAGE, function (e) {
+            oiframeBottom.style.height = e.data.oiframeBottomHeight + PX;
+            oiframeBottom.style.width = e.data.oiframeBottomWidth + PX;
+        })
 </script>

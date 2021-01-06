@@ -14,7 +14,7 @@
         <div class="layout-left-left">
             <iframe id="iframe_log" src="../static/log.html" frameborder="0"></iframe>
         </div>
-        <div style="width: 22%;float: right;">
+        <div class='layout-right'>
            <iframe id="iframe_about" src="../static/inner_about.html" frameborder="0"></iframe>
         </div>
     </div>
@@ -29,20 +29,19 @@
     let oiframeLog = document.querySelector("#iframe_log");
     let oframeAbout = document.querySelector("#iframe_about");
     let oiframeBottom = document.querySelector("#iframe_bottom");
-    window.addEventListener('message', function (e) {
+    window.addEventListener(MESSAGE, function (e) {
         oframeHeader.style.height = e.data.oframeHeaderHeight + PX;
         oframeHeader.style.width = e.data.oframeHeaderWidth + PX;
     })
-    window.addEventListener('message', function (e) {
+    window.addEventListener(MESSAGE, function (e) {
         oiframeLog.style.height = e.data.oiframeLogHeight + PX;
         oiframeLog.style.width = e.data.oiframeLogWidth + PX;
     })
-    window.addEventListener('message', function (e) {
+    window.addEventListener(MESSAGE, function (e) {
         oframeAbout.style.height = e.data.oframeAboutHeight + PX;
         oframeAbout.style.width = e.data.oframeAboutWidth + PX;
     })
-    window.addEventListener('message',
-    function (e) {
+    window.addEventListener(MESSAGE, function (e) {
         oiframeBottom.style.height = e.data.oiframeBottomHeight + PX;
         oiframeBottom.style.width = e.data.oiframeBottomWidth + PX;
     })

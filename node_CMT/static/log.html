@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="../css/inner.css">
     <link rel="stylesheet" href="../css/reset.css">
 </head>
+
 <body>
     <div class="contain_con log_con">
         <div class="list_header list_multHeader">
@@ -15,29 +17,30 @@
             <span>登录</span>
         </div>
         <ul>
-        <li>
-            <span>用户名</span>
-            <input type="text">
-        </li>
-        <li>
-            <span>密码</span>
-            <input type="text">
-        </li>
-        <li>
-            <button class="btn_defult">登录</button>
-            <button class="btn_prim">通过GitHub登录</button>
-            <i>忘记密码了？</i>
-        </li>
-    </ul>
+            <li>
+                <span>用户名</span>
+                <input type="text">
+            </li>
+            <li>
+                <span>密码</span>
+                <input type="text">
+            </li>
+            <li>
+                <button class="btn_defult">登录</button>
+                <button class="btn_prim">通过GitHub登录</button>
+                <i>忘记密码了？</i>
+            </li>
+        </ul>
 
     </div>
-    
+
 </body>
+
 </html>
 <script src="../js/common.js"></script>
 <script>
-     let ologCon = document.querySelector(".log_con");
-    document.addEventListener('DOMContentLoaded', function() {
+    let ologCon = document.querySelector(".log_con");
+    document.addEventListener('DOMContentLoaded', function () {
         let width = ologCon.clientWidth
         let height = ologCon.clientHeight
         window.parent.postMessage({
@@ -45,5 +48,4 @@
             oiframeLogWidth: width
         }, '*')
     }, false)
-   
 </script>

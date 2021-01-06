@@ -33,35 +33,36 @@
         </div>
     </header>
 </body>
+
 </html>
 <script src="../js/common.js"></script>
 <script>
     let oheader_search = document.querySelector(".header_search");
     let oheader_input = oheader_search.querySelector('input');
+    let oheader = document.querySelector('header');
     let header_flag = false;
-    oheader_search.onmouseout = function(){
-        if(header_flag == false){
+    oheader_search.onmouseout = function () {
+        if (header_flag == false) {
             oheader_search.style.backgroundColor = '#888';
             oheader_input.style.backgroundColor = '#888';
         }
     }
-    oheader_input.onfocus = function(){
+    oheader_input.onfocus = function () {
         header_flag = true;
         oheader_search.style.backgroundColor = '#fff';
         oheader_input.style.backgroundColor = '#fff';
     }
-    oheader_input.onblur = function(){
+    oheader_input.onblur = function () {
         header_flag = false;
         oheader_search.style.backgroundColor = '#888';
         oheader_input.style.backgroundColor = '#888';
     }
-    oheader_search.onmouseover = function(){
+    oheader_search.onmouseover = function () {
         oheader_search.style.backgroundColor = '#fff';
         oheader_input.style.backgroundColor = '#fff';
     }
-    var oheader = document.querySelector('header');
-    // iframeAdaptionPost(oheader,'oheader')
-    document.addEventListener('DOMContentLoaded', function() {
+    
+    document.addEventListener('DOMContentLoaded', function () {
         let width = oheader.clientWidth
         let height = oheader.clientHeight
         window.parent.postMessage({
@@ -69,5 +70,4 @@
             oframeHeaderWidth: width
         }, '*')
     }, false)
-
 </script>

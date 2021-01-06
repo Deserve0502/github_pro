@@ -35,27 +35,27 @@
      let oiframeOther = document.querySelector('#iframe_other');
      let oframeNotopic = document.querySelector('#iframe_notopic');
      let oiframeBottom = document.querySelector('#iframe_bottom');
-    window.addEventListener('message', function (e) {
+    window.addEventListener(MESSAGE, function (e) {
         oframeHeader.style.height = e.data.oframeHeaderHeight + PX;
         oframeHeader.style.width = e.data.oframeHeaderWidth + PX;
     })
-    window.addEventListener('message', function (e) {
+    window.addEventListener(MESSAGE, function (e) {
         oframeInvi.style.height = Number(e.data.oframeInviHeight) + 30 + PX;
         oframeInvi.style.width = e.data.oframeInviWidth + PX;
     })
-        window.addEventListener('message',function (e) {
+        window.addEventListener(MESSAGE, function (e) {
         oiframeAuthor.style.height = e.data.oiframeAuthorHeight + PX;
         oiframeAuthor.style.width = e.data.oiframeAuthorWidth + PX;
     })
-    window.addEventListener('message',function (e) {
+    window.addEventListener(MESSAGE, function (e) {
         oiframeOther.style.height = e.data.oiframeOtherHeight + PX;
         oiframeOther.style.width = e.data.oiframeOtherWidth + PX;
     })
-    window.addEventListener('message',function (e) {
+    window.addEventListener(MESSAGE, function (e) {
         oiframeBottom.style.height = e.data.oiframeBottomHeight + PX;
         oiframeBottom.style.width = e.data.oiframeBottomWidth + PX;
     })
-    window.addEventListener('message',function (e) {
+    window.addEventListener(MESSAGE, function (e) {
         oframeNotopic.style.height = e.data.oframeNotopicHeight + PX;
         oframeNotopic.style.width = e.data.oframeNotopicWidth + PX;
     })

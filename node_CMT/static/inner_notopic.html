@@ -12,21 +12,18 @@
 <body>
     <div class="list_container topic_con">
         <div class="list_header">无人回复的话题</div>
-        <ul class="list_section topic_ul">
-            <!-- classlist -->
-        </ul>
+        <ul class="list_section topic_ul"></ul>
     </div>
 </body>
 
 </html>
 <script src="../js/common.js"></script>
 <script>
-    let topicArr = [];
-
-    let allArr;
     let otopicUl = document.querySelector(".topic_ul");
-    let topicStr = '';
     let otopicCon = document.querySelector(".topic_con")
+    let topicArr = [];
+    let topicStr = '';
+    let allArr,notopicnum;
     document.addEventListener('DOMContentLoaded', function () {
         let width = otopicCon.clientWidth
         let height = otopicCon.clientHeight
@@ -43,13 +40,13 @@
         success: function (data) {
             let dataJson = JSON.parse(data);
             allArr = dataJson.data;
-
+            //查询回复为0的帖子
             for (let i = 0; i < allArr.length; i++) {
                 if (allArr[i].reply_count === 0) {
                     topicArr.push(allArr[i]);
                 }
             }
-            let notopicnum;
+            //渲染五条数据
             topicArr.length >= 5 ? notopicnum = 5 : notopicnum = topicArr.length;
             for (let i = 0; i < notopicnum; i++) {
                 topicStr += `

@@ -204,6 +204,7 @@ function getPagination(ul,li,lsPage,endPage){
  * 常量提取
  */
 const PX = 'px';
-let ls = localStorage;
+const ls = localStorage;
+const MESSAGE = 'message';
 
 
