@@ -1,6 +1,6 @@
 window.onload = function () {
   let ogotop = document.querySelector(".return-con")
-  let body = document.querySelector("body");
+ 
   // console.log('body',body.offsetHeight)
   // 获取页面可视区的高度
   var clientHeight = document.documentElement.clientHeight;

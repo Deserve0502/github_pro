@@ -23,18 +23,34 @@
         <iframe id="contain" src="../static/contain.html" frameborder="0"></iframe>
         <ul class="contain-pagination">
         </ul>
+        <div class="loading">
+            <div id="loader3">
+                <div id="loader3-inner"></div>
+        
+            </div>
+            <span class="text">Loading...</span>
+        </div>
     </div>
-
+    <!-- <div class="loading">
+        <div id="loader3" class="loader1">
+            <div id="loader3-inner"></div>
+    
+        </div>
+        <span class="text">Loading...</span>
+    </div> -->
+   
 </body>
 
 </html>
 <script src="../js/common.js"></script>
+
 <script>
     let ocontainPagination = document.querySelector(".contain-pagination");
     let ocontain = document.querySelector('#contain');
     let oallContain = document.querySelector(".allContain");
     let opaginationLi = document.querySelectorAll(".contain-pagination > li");
     let ocontain_li = document.querySelectorAll(".contain-header > li ");
+    let loading = document.querySelector(".loading");
     for (let i = 0; i < ocontain_li.length; i++) {
         ocontain_li[i].onclick = function () {
             if (ocontain_li[i].innerHTML === '精华') {
@@ -50,6 +66,10 @@
             } else {
                 ls.setItem("tab", "all");
             }
+            loading.style.display = 'block';
+            setTimeout(function(){
+                loading.style.display = 'none'
+            },1000);
             partRefresh();
             ocontain_li[0].style.backgroundColor = '#f6f6f6';
             for (let j = 0; j < ocontain_li.length; j++) {
@@ -64,16 +84,55 @@
     getPagination(ocontainPagination,opaginationLi,'page',21);
     window.addEventListener('message',function (e) {
             ocontain.style.height = e.data.ocontainHeight + PX;
-            ocontain.style.width = e.data.ocontainWidth + PX;
+            // ocontain.style.width = e.data.ocontainWidth + PX;
         })
     document.addEventListener('DOMContentLoaded', function () {
         setTimeout(function () {
             let width = oallContain.clientWidth
             let height = oallContain.clientHeight
             window.parent.postMessage({
-                iframePaginationHeight: 2230,
+                iframePaginationHeight: 2150,
                 iframePaginationWidth: width
             }, '*')
         }, 2000)
     }, false)
+//     window.onload = function () {
+//   let goTop1 = document.querySelectorAll(".goTop")
+//   // console.log('body',body.offsetHeight)
+//   // 获取页面可视区的高度
+//   console.log(goTop1[0])
+//   var clientHeight = document.documentElement.clientHeight;
+
+//   var timer = null
+//   var isTop = true
+
+//   // 滚动条滚动时触发
+//   window.addEventListener('scroll', function () {
+//       console.log(11)
+//     var osTop = document.documentElement.scrollTop || document.body.scrollTop
+//     if (osTop >= clientHeight) {
+//       ogotop.style.opacity = '1'
+//     } else {
+//       ogotop.style.opacity = '0'
+//     }
+//     if (!isTop) {
+//       clearInterval(timer)
+//     }
+//     isTop = false
+//   })
+
+//   goTop1[0].onclick = function () {
+//     timer = setInterval(function () {
+//       // 获取滚动条距离顶部的高度
+//       var osTop = document.documentElement.scrollTop || document.body.scrollTop
+//       var ispeed = Math.floor(-osTop / 5)
+//       document.documentElement.scrollTop = document.body.scrollTop = osTop + ispeed
+//       isTop = true
+//       if (osTop === 0) {
+//         clearInterval(timer)
+//       }
+//     }, 30)
+//   }
+// }
+
 </script>

@@ -9,7 +9,9 @@
     <link rel='icon' type='image/x-icon' href='../img/cnode_icon_32.png' />
 </head>
 <body>
-    <iframe id='iframe_header' src='../static/header.html' frameborder='0'></iframe>
+    <div class="box-header">
+        <iframe id="iframe_header" src="../static/header.html" frameborder="0"></iframe>
+    </div>
     <div class='layout-left'>
         <div class='layout-left-left'>
             <iframe id='iframe_invi' src='../static/inner_invitation.html' frameborder='0'></iframe>
@@ -35,13 +37,13 @@
      let oiframeOther = document.querySelector('#iframe_other');
      let oframeNotopic = document.querySelector('#iframe_notopic');
      let oiframeBottom = document.querySelector('#iframe_bottom');
+     let oboxHeader = document.querySelector(".box-header");
     window.addEventListener(MESSAGE, function (e) {
-        oframeHeader.style.height = e.data.oframeHeaderHeight + PX;
-        oframeHeader.style.width = e.data.oframeHeaderWidth + PX;
-    })
+        oboxHeader.style.height = e.data.oframeHeaderHeight + PX;
+        })
     window.addEventListener(MESSAGE, function (e) {
         oframeInvi.style.height = Number(e.data.oframeInviHeight) + 30 + PX;
-        oframeInvi.style.width = e.data.oframeInviWidth + PX;
+        // oframeInvi.style.width = e.data.oframeInviWidth + PX;
     })
         window.addEventListener(MESSAGE, function (e) {
         oiframeAuthor.style.height = e.data.oiframeAuthorHeight + PX;
@@ -53,7 +55,7 @@
     })
     window.addEventListener(MESSAGE, function (e) {
         oiframeBottom.style.height = e.data.oiframeBottomHeight + PX;
-        oiframeBottom.style.width = e.data.oiframeBottomWidth + PX;
+        // oiframeBottom.style.width = e.data.oiframeBottomWidth + PX;
     })
     window.addEventListener(MESSAGE, function (e) {
         oframeNotopic.style.height = e.data.oframeNotopicHeight + PX;

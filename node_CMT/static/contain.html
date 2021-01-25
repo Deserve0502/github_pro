@@ -10,9 +10,19 @@
 </head>
 
 <body>
+
     <div class="contain-con">
         <ul class="contain-section"></ul>
+       
     </div>
+    <div class="loading" style="top: 0;">
+        <div id="loader3">
+            <div id="loader3-inner"></div>
+    
+        </div>
+        <span class="text">Loading...</span>
+    </div>
+
 </body>
 
 </html>
@@ -21,7 +31,12 @@
     let ocontain_li = document.querySelectorAll(".contain-header > li ");
     let ocontain_section = document.querySelector('.contain-section');
     let ocontainCon = document.querySelector('.contain-con');
+    let loading = document.querySelector(".loading");
     let containArr,topPage;
+    loading.style.display = 'block';
+            setTimeout(function(){
+                loading.style.display = 'none'
+            },2000)
     for (let i = 0; i < ocontain_li.length; i++) {
         ocontain_li[i].onclick = function () {
             ocontain_li[0].style.backgroundColor = '#f6f6f6';
@@ -119,7 +134,7 @@
             let height = ocontainCon.clientHeight;
             window.parent.postMessage({
                 ocontainHeight: 2039,
-                ocontainWidth: width
+                // ocontainWidth: width
             }, '*')
         }, 1500)
     }, false)

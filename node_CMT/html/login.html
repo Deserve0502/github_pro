@@ -9,7 +9,9 @@
     <link rel="icon" type="image/x-icon" href="../img/cnode_icon_32.png" />
 </head>
 <body>
-    <iframe id="iframe_header" src="../static/header.html" frameborder="0" margin="0px"></iframe>
+    <div class="box-header">
+        <iframe id="iframe_header" src="../static/header.html" frameborder="0"></iframe>
+    </div>
     <div class="layout-left">
         <div class="layout-left-left">
             <iframe id="iframe_log" src="../static/log.html" frameborder="0"></iframe>
@@ -29,10 +31,10 @@
     let oiframeLog = document.querySelector("#iframe_log");
     let oframeAbout = document.querySelector("#iframe_about");
     let oiframeBottom = document.querySelector("#iframe_bottom");
+    let oboxHeader = document.querySelector(".box-header");
     window.addEventListener(MESSAGE, function (e) {
-        oframeHeader.style.height = e.data.oframeHeaderHeight + PX;
-        oframeHeader.style.width = e.data.oframeHeaderWidth + PX;
-    })
+        oboxHeader.style.height = e.data.oframeHeaderHeight + PX;
+        })
     window.addEventListener(MESSAGE, function (e) {
         oiframeLog.style.height = e.data.oiframeLogHeight + PX;
         oiframeLog.style.width = e.data.oiframeLogWidth + PX;
@@ -43,6 +45,6 @@
     })
     window.addEventListener(MESSAGE, function (e) {
         oiframeBottom.style.height = e.data.oiframeBottomHeight + PX;
-        oiframeBottom.style.width = e.data.oiframeBottomWidth + PX;
+        // oiframeBottom.style.width = e.data.oiframeBottomWidth + PX;
     })
 </script>

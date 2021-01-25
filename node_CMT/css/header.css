@@ -12,6 +12,7 @@ header {
     display: flex;
     align-items: center;
     position: relative;
+    flex-wrap: wrap;
 }
 .header-center > a {
     margin-right: 20px;
@@ -48,8 +49,8 @@ header {
 .header-nav {
     height: 100%;
     width: 357px;
-    position: absolute;
-    right: 0;
+    margin-left:auto;
+
     display: flex;
     align-items: center;
 }

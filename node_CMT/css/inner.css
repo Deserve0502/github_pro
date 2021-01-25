@@ -277,7 +277,7 @@
 }
 .con-title {
     font-size: 16px;
-    max-width: 70%;
+    max-width: 45%;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -609,4 +609,60 @@
     color: #000;
     background-color: #fcfafa;
     padding: 4px 6px;
+}
+#loader3{
+    box-sizing: border-box;
+    position: relative;
+    margin-left: 48%;
+    transform: rotate(180deg);
+    width: 50px;
+    height: 50px;
+    border: 10px groove #80bd01;
+    border-radius: 50%;
+    animation: loader-3 1s ease-out alternate infinite;/* alternate表示则动画会在奇数次数（1、3、5 等等）正常播放，而在偶数次数（2、4、6 等等）反向播放 */
+    /* display: none; */
+   /* top: 10%; */
+    
+}
+.loading {
+    position: absolute;
+    top: 46px;
+    display: none;
+    z-index: 1000;
+    height: 2050px;
+    /* background-color:rgba(0,0,0,.075); */
+    background-color: white;
+    width: 100%;
+}
+.text {
+    margin-left: 48%;
+}
+#loader3-inner{
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    border: 0 inset  #80bd01;
+    border-radius: 50%;
+    animation: border-zoom 1s ease-out alternate infinite;
+    
+   
+}
+@keyframes loader-3 {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(-360deg);
+    }
+}
+@keyframes border-zoom {
+    0%{
+        border-width: 0px;
+    }
+    100%{
+        border-width: 10px;
+    }
+}
+.paGo {
+    
 }

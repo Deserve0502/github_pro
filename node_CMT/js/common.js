@@ -110,27 +110,41 @@ function getPagination(ul,li,lsPage,endPage){
     function buildPa() {
         for (let j = 0; j < arr.length; j++) {
             str += `
-                <li>${arr[j]}</li>
+                <li>
+            ${arr[j]}
+                </li>
             `
         }
         ul.innerHTML = str;
         str = '';
         li = document.querySelectorAll(".contain-pagination > li");
+        for(let i = 0;i<li.length;i++){
+            li[i].classList.add("goTop");
+        }
+
         liclick();
     }
     // 重建数组顺序
     function buildArr() {
-        console.log(arr)
         let difference = -2;
         for (let i = 2; i < arr.length - 2; i++) {
             arr[i] = Number(ls.getItem(lsPage)) + Number(difference);
             difference++;
         }
     }
+    let loading = document.querySelector(".loading");
+    // let oloader3 = document.querySelector("#loader3");
     // 点击按钮事件
     function liclick() {
         for (let i = 0; i < li.length; i++) {
             li[i].onclick = function () {
+
+              
+                loading.style.display = 'block';
+            setTimeout(function(){
+                loading.style.display = 'none'
+            },1000);
+
                 ls.setItem(lsPage, li[i].innerHTML);
                 if (li[i].innerHTML >= 4 && li[i].innerHTML <= endPage) {
                     if (ls.getItem(lsPage) == (endPage - 2)) {

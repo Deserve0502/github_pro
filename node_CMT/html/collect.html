@@ -11,7 +11,9 @@
 </head>
 
 <body>
-    <iframe id="iframe_header" src="../static/header.html" frameborder="0"></iframe>
+    <div class="box-header">
+        <iframe id="iframe_header" src="../static/header.html" frameborder="0"></iframe>
+    </div>
     <div class="layout-left">
         <div class="layout-left-left">
             <div class="list-header list-multHeader">
@@ -49,10 +51,10 @@
     let ocollectSection = document.querySelector(".contain-section");
     let oauthorName = document.querySelector(".authorName");
     oauthorName.innerHTML = ls.getItem("author");
+    let oboxHeader = document.querySelector(".box-header");
     window.addEventListener(MESSAGE, function (e) {
-        oframeHeader.style.height = e.data.oframeHeaderHeight + PX;
-        oframeHeader.style.width = e.data.oframeHeaderWidth + PX;
-    })
+        oboxHeader.style.height = e.data.oframeHeaderHeight + PX;
+        })
 
     window.addEventListener(MESSAGE, function (e) {
         oiframeAuthor.style.height = e.data.oiframeAuthorHeight + PX;
@@ -70,7 +72,7 @@
 
     window.addEventListener(MESSAGE, function (e) {
         oiframeBottom.style.height = e.data.oiframeBottomHeight + PX;
-        oiframeBottom.style.width = e.data.oiframeBottomWidth + PX;
+        // oiframeBottom.style.width = e.data.oiframeBottomWidth + PX;
     })
 
 

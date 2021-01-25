@@ -51,39 +51,72 @@ body {
     margin: auto;
     padding: 15px;
     margin-bottom: 20px;
+    margin-top: -15px;
 }
 .layout-left-left {
     width: 76%;
     float: left;
 }
 .layout-right {
-    width: 22%;
+    width: 23%;
     float: right;
 }
-@media screen  and (max-width: 982px){
+.box-header {
+    height: 50px;
+    margin-bottom: 15px;
+}
+@media  only screen  and (max-width: 982px){
     .layout-right {
        display: none;
     }
     .layout-left {
+
         width: 100%;
     }
     .layout-left-left {
-        width: 90%;
+        width: 96%;
     }
+
+
+   
  
+}
+@media  only screen  and (max-width: 812px) {
+    header {
+        height: 90px;
+    }
+    .box-header {
+        height: 90px;
+    }
+   .header-nav {
+       height: 78%;
+       margin-left: 0;
+   }
+   .layout-left {
+    margin-top: 40px;
+   }
 }
 iframe {
     width: 100%;
     overflow: hidden;
     margin-bottom: 10px;
+    /* position: absolute; */
+    top: 0;
+
+    
 }
 button {
     font-size: 13px !important;
 }
+
 .footer {
     position: absolute;
     bottom: 0;
     width: 100%;
+}
+#iframe_bottom {
+    margin-bottom: 0px;
+    float: left;
 }
 .list-container {
     background-color: white;
@@ -106,4 +139,12 @@ button {
     padding: 10px;
     
 }
-
+.paGo {
+    position: absolute;
+    top: 2164px;
+    width: 269px;
+    height: 37px;
+    left: 68px;
+    /* background-color: red; */
+    z-index: 0;
+}

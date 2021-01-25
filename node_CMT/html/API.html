@@ -11,7 +11,9 @@
 </head>
 
 <body>
-    <iframe id="iframe_header" src="../static/header.html" frameborder="0" margin="0px"></iframe>
+    <div class="box-header">
+        <iframe id="iframe_header" src="../static/header.html" frameborder="0"></iframe>
+    </div>
     <div class="layout-left ">
         <div class="layout-left-left">
             <div class="contain-con beginner-con">
@@ -100,10 +102,10 @@
     let oiframeComm = document.querySelector("#iframe_comm");
     let oiframeEwm = document.querySelector("#iframe_ewm");
     let oiframeBottom = document.querySelector("#iframe_bottom");
+    let oboxHeader = document.querySelector(".box-header");
     window.addEventListener(MESSAGE, function (e) {
-        oframeHeader.style.height = e.data.oframeHeaderHeight + PX;
-        oframeHeader.style.width = e.data.oframeHeaderWidth + PX;
-    })
+        oboxHeader.style.height = e.data.oframeHeaderHeight + PX;
+        })
     window.addEventListener(MESSAGE, function (e) {
             oframeLog.style.height = e.data.oframeLogHeight + PX;
             oframeLog.style.width = e.data.oframeLogWidth + PX;
@@ -118,6 +120,6 @@
         })
     window.addEventListener(MESSAGE, function (e) {
             oiframeBottom.style.height = e.data.oiframeBottomHeight + PX;
-            oiframeBottom.style.width = e.data.oiframeBottomWidth + PX;
+            // oiframeBottom.style.width = e.data.oiframeBottomWidth + PX;
         })
 </script>
