@@ -57,6 +57,7 @@
         },
         success: function (data) {
             let dataJson = JSON.parse(data);
+            console.log(typeof JSON.parse(data).data,'aaa')
             containArr = dataJson.data;
             let ocontain_section_li = '';
             for (let i = 0; i < containArr.length; i++) {

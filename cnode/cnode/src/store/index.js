@@ -1,29 +1,34 @@
 import { observable, computed, action } from "mobx";
-
-
+import http from '../http'
 class AppStore {
-    @observable time = '20';
-    @observable todos = [];
-    @computed get desc() {
-        return `${this.time}还有${this.todos.length}条任务待完成`
+    @observable tab = 'all';//首页分类标签，默认all
+    @observable page = 1;//首页分页页数，默认1
+    @observable list = [{title:'loading'}];//首页列表
+    @observable detile = {title:'loading'};//文章详情
+    @observable articleId = '';//文章id
+    @action getIndexMessage(url){
+        //获取首页列表
+        this.list =  [{title:'loading'}]
+        http.get(url,
+        {
+        //get参数传递
+          params:{
+          tab:this.tab,
+          page:this.page,
+      }
     }
-    @action 
-    addTodo(todo) {
-        this.todos.push(todo);
+        ).then(response => {  
+                this.list = response.data   
+        })
     }
-    @action deleteTodo() {
-        this.todos.pop()
-       
+    @action getArticleDetile(url){
+        //获取文章详情
+        this.detile = {title:'loading'}
+        http.get(url).then(response => {  
+            this.detile = response.data   
+        })
     }
-    @action resetTodo() {
-        this.todos = []
-    }
-    @action getNow() {
-        this.time = moment().format('YYYY-MM-DD HH:mm:ss')
-    }
-    
     
 }
-
 export default new AppStore();
 

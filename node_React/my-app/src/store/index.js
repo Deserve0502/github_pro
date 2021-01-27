@@ -1,8 +1,10 @@
-import { observable, computed, action } from "mobx";
+import { observable, computed, action, makeObservable } from "mobx";
 import moment from 'moment'
 
 class AppStore {
-    
+    constructor(){
+        makeObservable(this)
+       }
     @observable time = '20';
     @observable todos = [];
     //尽量把需要改变的变量的方法用action写在store里面，这样可以更规范一些，也避免多人协作的麻烦

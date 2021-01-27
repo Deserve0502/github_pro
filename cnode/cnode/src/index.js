@@ -1,16 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import Page from './page/index';
-import { Provider } from 'mobx-react'
-import store from './store'
-import { BrowserRouter, withRouter, Switch, Redirect, Route, Fragment,hashHistory } from 'react-router-dom'
+import Routers from './router';
+import '../src/style/reset.css'
+import '../src/style/index.css'
+import '../src/style/font/iconfont.css'
 ReactDOM.render(
-  <Provider store={store}>
-  <BrowserRouter>
-    <Page />
-  </BrowserRouter>
-  </Provider>,
-  document.getElementById('root')
-);
-
+<Routers />
+, document.querySelector('#root'));
